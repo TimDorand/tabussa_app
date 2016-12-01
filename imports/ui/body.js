@@ -46,7 +46,7 @@ $( function() {
 
 // Calling API for all drinks
 
-var drinks;
+var drinks = [];
 var arrayDrinks = [];
 
 HTTP.call( 'POST', 'http://timothee-dorand.fr/tabussa/API/drinks', {
@@ -56,14 +56,11 @@ HTTP.call( 'POST', 'http://timothee-dorand.fr/tabussa/API/drinks', {
         console.log( error );
     } else {
         console.log(response);
-
-        console.log(response.content);
-
-        arrayDrinks = response.content;
-        console.log(arrayDrinks[0]);
-        /*for(i=0; i < arrayDrinks.length; i++){
-            console.log(arrayDrinks[])
-        }*/
+        var arrayDrinks = JSON.parse(response.content);
+        for(i=0; i < arrayDrinks.length; i++){
+            drinks.push(arrayDrinks[i].name);
+        }
+        console.log(drinks);
 
     }
 });
