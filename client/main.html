@@ -1,21 +1,29 @@
-<head>
-  <title>Tabussa</title>
-
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-</head>
-
-
 <body>
 <div class="container">
-    <header class="navbar navbar-default" role="navigation">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/">Microscope</a>
+
+
+    <div id="containment-wrapper">
+        <div class="cockail_image">
+            <div id="draggable3" class="draggable ui-widget-content">
+                <img src="images/cocktail.svg" height="50" class="img-responsive">
+
+                <!--<p>Déroule le cocktail</p>-->
+            </div>
         </div>
-    </header>
-    <div id="main">
-        {{> postsList}}
+
+
+        <div class="ui-widget">
+            <label for="tags">Tags: </label>
+            <input id="tags" placeholder="Votre Boisson" type="text">
+        </div>
     </div>
+
+
 </div>
 </body>
+
+
+<template name="task">
+    <li>{{text}}</li>
+</template>
+
