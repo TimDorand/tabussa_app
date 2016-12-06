@@ -1,0 +1,19 @@
+<template name="ingredients">
+    <ul>
+        {{> addIngredients}}
+
+        {{#each ingredients}}
+        <li>{{name}}</li>
+        {{/each}}
+    </ul>
+</template>
+
+<template name="addIngredients">
+    <form>
+        <!--<input type="text" placeholder="Type a task here..." name="todoName">-->
+        <div class="ui-widget">
+            <input autofocus id="ingredientName" type="text" name="ingredientName" placeholder="Ajouter un nouvel ingrédient ">
+        </div>
+
+    </form>
+</template>

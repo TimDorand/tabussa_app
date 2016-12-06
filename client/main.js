@@ -50,7 +50,7 @@ $( function() {
 
 var drinks = [];
 
-HTTP.call( 'POST', 'http://localhost:8888/tabussa/API/drinks', {
+HTTP.call( 'POST', 'http://timothee-dorand.fr/tabussa/API/drinks', {
 
 }, function( error, response ) {
     if ( error ) {
@@ -70,7 +70,30 @@ HTTP.call( 'POST', 'http://localhost:8888/tabussa/API/drinks', {
 
 $( function() { // input de recherche des tags
 
-    $( "#tags" ).autocomplete({
+    $( "#ingredientName" ).autocomplete({
         source: drinks
     });
 } );
+
+
+// Listing des ingrédients du cocktail
+
+Ingredients = new Mongo.Collection('ingredients');
+
+Ingredients._collection.insert({ name: "Vokda", score: 0 });
+Ingredients._collection.insert({ name: "Pastis", score: 10 });
+
+Template.ingredients.helpers({
+    'ingredients': function(){
+        return Ingredients.find();
+    }});
+
+Template.addIngredients.events({
+    'submit form': function (event) {
+        event.preventDefault();
+        var ingredientName = $('[name="ingredientName"]').val();
+        Ingredients._collection.insert({
+            name: ingredientName
+        });
+    }
+});

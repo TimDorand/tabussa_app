@@ -166,3 +166,22 @@ body {
     margin-bottom: 5px;
     pointer-events: auto;
 }
+
+
+/* INPUT  */
+
+#ingredientName{
+    width: 90%;
+    margin: 10px;
+    background: grey;
+    border: none;
+    border-bottom: 1px solid black;
+    font-size:40px;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+/* LISTE */
+
