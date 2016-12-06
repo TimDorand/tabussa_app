@@ -148,7 +148,7 @@ function myCocktailSuggestions(mycocktail) {
 
     HTTP.call('POST', 'http://timothee-dorand.fr/tabussa/API/cocktail', {
         data: {
-            "drinks": "mes boissons"
+            "drinks": mycocktail
         }
     }, function (error, response) {
         if (error) {
