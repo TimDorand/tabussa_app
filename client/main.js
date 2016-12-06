@@ -24,14 +24,6 @@ function touchHandler(event) {
     event.preventDefault();
 }
 
-function init() {
-    document.addEventListener("touchstart", touchHandler, true);
-    document.addEventListener("touchmove", touchHandler, true);
-    document.addEventListener("touchend", touchHandler, true);
-    document.addEventListener("touchcancel", touchHandler, true);
-}
-init();
-
 $( function() {
     // $( "#draggable3" ).draggable({ axis: "y" });
     $( "#draggable" ).draggable({ axis: "x" });
