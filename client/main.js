@@ -2,6 +2,7 @@ import { Template } from 'meteor/templating';
 
 import './main.html';
 import '/imports/library/jquery-ui.js';
+import '/imports/library/jquery-ui.css';
 import '/imports/library/touch-punch';
 
 // Drag cocktail top

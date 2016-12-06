@@ -173,7 +173,7 @@ body {
 #ingredientName{
     width: 90%;
     margin: 10px;
-    background: grey;
+    background: none;
     border: none;
     border-bottom: 1px solid black;
     font-size:40px;
@@ -185,3 +185,10 @@ textarea:focus, input:focus{
 
 /* LISTE */
 
+.ui-autocomplete li{
+    font-size:40px !important;
+    padding:5px 0 5px 0;
+
+}
+
+/*ui-widget ui-widget-content ui-autocomplete ui-front*/
