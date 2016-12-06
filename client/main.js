@@ -2,6 +2,7 @@ import { Template } from 'meteor/templating';
 
 import './main.html';
 import '/imports/library/jquery-ui.js';
+import '/imports/library/jquery-ui.css';
 import '/imports/library/touch-punch';
 
 // Drag cocktail top
@@ -23,13 +24,7 @@ function touchHandler(event) {
     event.preventDefault();
 }
 
-function init() {
-    document.addEventListener("touchstart", touchHandler, true);
-    document.addEventListener("touchmove", touchHandler, true);
-    document.addEventListener("touchend", touchHandler, true);
-    document.addEventListener("touchcancel", touchHandler, true);
-}
-init();
+
 
 $( function() {
     // $( "#draggable3" ).draggable({ axis: "y" });
@@ -50,7 +45,7 @@ $( function() {
 
 var drinks = [];
 
-HTTP.call( 'POST', 'http://localhost:8888/tabussa/API/drinks', {
+HTTP.call( 'POST', 'http://timothee-dorand.fr/tabussa/API/drinks', {
 
 }, function( error, response ) {
     if ( error ) {
@@ -70,7 +65,30 @@ HTTP.call( 'POST', 'http://localhost:8888/tabussa/API/drinks', {
 
 $( function() { // input de recherche des tags
 
-    $( "#tags" ).autocomplete({
+    $( "#ingredientName" ).autocomplete({
         source: drinks
     });
 } );
+
+
+// Listing des ingrédients du cocktail
+
+Ingredients = new Mongo.Collection('ingredients');
+
+Ingredients._collection.insert({ name: "Vokda", score: 0 });
+Ingredients._collection.insert({ name: "Pastis", score: 10 });
+
+Template.ingredients.helpers({
+    'ingredients': function(){
+        return Ingredients.find();
+    }});
+
+Template.addIngredients.events({
+    'submit form': function (event) {
+        event.preventDefault();
+        var ingredientName = $('[name="ingredientName"]').val();
+        Ingredients._collection.insert({
+            name: ingredientName
+        });
+    }
+});

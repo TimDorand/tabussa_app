@@ -166,3 +166,29 @@ body {
     margin-bottom: 5px;
     pointer-events: auto;
 }
+
+
+/* INPUT  */
+
+#ingredientName{
+    width: 90%;
+    margin: 10px;
+    background: none;
+    border: none;
+    border-bottom: 1px solid black;
+    font-size:40px;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
+/* LISTE */
+
+.ui-autocomplete li{
+    font-size:40px !important;
+    padding:5px 0 5px 0;
+
+}
+
+/*ui-widget ui-widget-content ui-autocomplete ui-front*/
