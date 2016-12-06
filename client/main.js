@@ -53,14 +53,14 @@ HTTP.call( 'POST', 'http://timothee-dorand.fr/tabussa/API/drinks', {
     if ( error ) {
         console.log( error );
     } else {
-        console.log(response);
+        // console.log(response);
         arrayDrinks = JSON.parse(response.content);
         for(i=0; i < arrayDrinks.length; i++){
             drinks.push(arrayDrinks[i].name);
             allDrinks.push(arrayDrinks[i]);
         }
-        console.log(drinks);
-        console.log(allDrinks);
+        // console.log(drinks);
+        // console.log(allDrinks);
 
     }
 });
@@ -92,7 +92,10 @@ var mycocktail = [];
 Template.addIngredients.events({
     'submit form': function (event) {
         event.preventDefault();
+
         var ingredientName = $('[name="ingredientName"]').val();
+
+        $('[name="ingredientName"]').val('');
 
         // A chaque submit on ajoute le nom de l'ingrédient dans un tableau
         for(i=0; i < allDrinks.length; i++) {
@@ -109,7 +112,8 @@ Template.addIngredients.events({
         Ingredients._collection.insert({
             name: ingredientName
         });
-        myCocktailSuggestions(mycocktail)
+        myCocktailSuggestions(mycocktail);
+
 
     }
 });
@@ -119,9 +123,6 @@ Template.addIngredients.events({
 // Listing des suggestions
 
 Suggestions = new Mongo.Collection('suggestions');
-
-Suggestions._collection.insert({ name: "Jus d'orange", score: 0 });
-Suggestions._collection.insert({ name: "Coca", score: 10 });
 
 Template.suggestions.helpers({
     'suggestions': function(){
@@ -154,7 +155,21 @@ function myCocktailSuggestions(mycocktail) {
             console.log(error);
         } else {
             console.log(response);
-            arrayCocktails = JSON.parse(response.content);
+            var arrayCocktails = JSON.parse(response.content);
+            console.log(arrayCocktails);
+
+            var cocktailSuggestions = arrayCocktails.suggestions;
+
+            // Si y'a des suggestions, on les push dans l'array suggestions et on les affiches
+            if(cocktailSuggestions){
+
+                $.each(cocktailSuggestions, function(index, value) {
+                    Suggestions._collection.insert({ name: value.name });
+
+                });
+            }
+
+
             for (i = 0; i < arrayCocktails.length; i++) {
                 suggestions.push(arrayCocktails[i].name);
             }
