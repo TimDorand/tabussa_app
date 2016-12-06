@@ -4,9 +4,12 @@
             {{> addIngredients}}
             <div class="content_white list">
                 <h2>Mon Cocktail</h2>
-                {{#each ingredients}}
-                <li>{{name}}</li>
-                {{/each}}
+                <div class="list">
+                    {{#each ingredients}}
+                    <li>{{name}}</li>
+                    {{/each}}
+                </div>
+
             </div>
         </ul>
 
