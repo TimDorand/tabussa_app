@@ -2,8 +2,10 @@
     height:100%;
     width:100%;
 
+
 }
 .container {
+
     /*background-color: #fdc9db;*/
 }
 
@@ -36,6 +38,9 @@ p, input{
 }
 #containment-wrapper { width: 100%; padding:0;}
 h3 { clear: left; }
+
+/* Cocktail   */
+
 .cockail_image {
     height: 30%;
 }
@@ -45,13 +50,21 @@ h3 { clear: left; }
     margin:auto;
     text-align:center;
 }
+.ui-widget-content {
+    background-color: inherit !important;
+}
 .ui-resizable-s {
-   height:100px !important;
+   height:70px !important;
     width: 100%;
+    background-image: URL('images/menu-defil.png');
+    background-size: contain;
+    background-position: center center;
+    background-repeat:no-repeat;
     background-color: #666666;
     position: absolute;
-    bottom:-100px;
+    bottom:-70px !important;
 }
+
 
 
 
@@ -59,19 +72,23 @@ h3 { clear: left; }
 
 #ingredientName{
     width: 90%;
-    margin: 20px;
+    margin: 20px 5%;
     background: none;
     border: none;
     border-bottom: 1px solid black;
     font-size:40px;
+    text-align: center;
 }
+
 
 textarea:focus, input:focus{
     outline: none;
 }
 
 /* LISTE */
-
+ul {
+    padding: 0;
+}
 .ui-autocomplete li{
     font-size:40px !important;
     padding:5px 0 5px 0;
@@ -80,10 +97,8 @@ textarea:focus, input:focus{
 
 .ingredientsList li{
     font-size: 40px;
-    padding:10px;
+    padding:10px ;
     list-style: none;
-    border-radius: 5px;
     border:1px solid black;
-    width: 90%;
-    margin:10px;
+    width: 100%;
 }
