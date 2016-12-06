@@ -123,11 +123,7 @@
 	left: 0;
 }
 .ui-resizable-e {
-	cursor: e-resize;
-	width: 7px;
-	right: -5px;
-	top: 0;
-	height: 100%;
+	display: none;
 }
 .ui-resizable-w {
 	cursor: w-resize;
@@ -628,7 +624,7 @@ button.ui-button::-moz-focus-inner {
 	top: 0;
 }
 .ui-dialog .ui-resizable-e {
-	width: 2px;
+	width: 0;
 	right: 0;
 }
 .ui-dialog .ui-resizable-s {
