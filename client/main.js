@@ -131,19 +131,7 @@ Template.addIngredients.events({
 function myCocktailSuggestions(mycocktail) {
 
     var suggestions= [];
-    // Calling a method
-    $.ajax({
-        method: "post",
-        url: "http://timothee-dorand.fr/tabussa/API/cocktail",
-        data: 'mes boissons',
-        contentType: "application/json",
-        success: function (data) {
-            console.log(data); // 6
-            console.log(data.body);
 
-        }
-    });
-/*
     HTTP.call('POST', 'http://localhost:8888/tabussa/API/cocktail', {
         data: {
             "drinks": "mes boissons"
@@ -161,5 +149,5 @@ function myCocktailSuggestions(mycocktail) {
             console.log(suggestions);
 
         }
-    });*/
+    });
 }

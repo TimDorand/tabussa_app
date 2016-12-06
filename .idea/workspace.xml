@@ -27,8 +27,8 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
-              <caret line="136" column="39" selection-start-line="136" selection-start-column="39" selection-end-line="136" selection-end-column="39" />
+            <state relative-caret-position="264">
+              <caret line="136" column="35" selection-start-line="136" selection-start-column="35" selection-end-line="136" selection-end-column="35" />
               <folding>
                 <element signature="n#!!block;n#touchHandler#0" expanded="false" />
                 <element signature="e#380#496#0" expanded="false" />
@@ -37,7 +37,7 @@
                 <element signature="e#1457#1494#0" expanded="false" />
                 <element signature="e#2197#2239#0" expanded="false" />
                 <element signature="e#3131#3319#0" expanded="false" />
-                <marker date="1481044986000" expanded="false" signature="3904:3947" ph="{...}" />
+                <element signature="e#3581#3624#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -505,7 +505,7 @@
       <workItem from="1480598819466" duration="1407000" />
       <workItem from="1480611914263" duration="3199000" />
       <workItem from="1480669632320" duration="30000" />
-      <workItem from="1481033246903" duration="9540000" />
+      <workItem from="1481033246903" duration="9589000" />
     </task>
     <task id="LOCAL-00001" summary="Add localy new ingredients">
       <created>1481038355633</created>
@@ -535,15 +535,22 @@
       <option name="project" value="LOCAL" />
       <updated>1481040625622</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="trying to get post data back">
+      <created>1481045251426</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1481045251426</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27934000" />
+    <option name="totallyTimeSpent" value="27983000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="836" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2746781" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -582,7 +589,8 @@
     <MESSAGE value="fix list jquery" />
     <MESSAGE value="fix touch action" />
     <MESSAGE value="style ingredients temporaire" />
-    <option name="LAST_COMMIT_MESSAGE" value="style ingredients temporaire" />
+    <MESSAGE value="trying to get post data back" />
+    <option name="LAST_COMMIT_MESSAGE" value="trying to get post data back" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -645,7 +653,7 @@
             <element signature="e#1457#1494#0" expanded="false" />
             <element signature="e#2197#2239#0" expanded="false" />
             <element signature="e#3131#3319#0" expanded="false" />
-            <marker date="1481044986000" expanded="false" signature="3904:3947" ph="{...}" />
+            <element signature="e#3581#3624#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -691,7 +699,7 @@
             <element signature="e#1457#1494#0" expanded="false" />
             <element signature="e#2197#2239#0" expanded="false" />
             <element signature="e#3131#3319#0" expanded="false" />
-            <marker date="1481044986000" expanded="false" signature="3904:3947" ph="{...}" />
+            <element signature="e#3581#3624#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -737,7 +745,7 @@
             <element signature="e#1457#1494#0" expanded="false" />
             <element signature="e#2197#2239#0" expanded="false" />
             <element signature="e#3131#3319#0" expanded="false" />
-            <marker date="1481044986000" expanded="false" signature="3904:3947" ph="{...}" />
+            <element signature="e#3581#3624#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -783,7 +791,7 @@
             <element signature="e#1457#1494#0" expanded="false" />
             <element signature="e#2197#2239#0" expanded="false" />
             <element signature="e#3131#3319#0" expanded="false" />
-            <marker date="1481044986000" expanded="false" signature="3904:3947" ph="{...}" />
+            <element signature="e#3581#3624#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -829,7 +837,7 @@
             <element signature="e#1457#1494#0" expanded="false" />
             <element signature="e#2197#2239#0" expanded="false" />
             <element signature="e#3131#3319#0" expanded="false" />
-            <marker date="1481044986000" expanded="false" signature="3904:3947" ph="{...}" />
+            <element signature="e#3581#3624#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -875,7 +883,7 @@
             <element signature="e#1457#1494#0" expanded="false" />
             <element signature="e#2197#2239#0" expanded="false" />
             <element signature="e#3131#3319#0" expanded="false" />
-            <marker date="1481044986000" expanded="false" signature="3904:3947" ph="{...}" />
+            <element signature="e#3581#3624#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1017,8 +1025,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="136" column="39" selection-start-line="136" selection-start-column="39" selection-end-line="136" selection-end-column="39" />
+        <state relative-caret-position="264">
+          <caret line="136" column="35" selection-start-line="136" selection-start-column="35" selection-end-line="136" selection-end-column="35" />
           <folding>
             <element signature="n#!!block;n#touchHandler#0" expanded="false" />
             <element signature="e#380#496#0" expanded="false" />
@@ -1027,7 +1035,7 @@
             <element signature="e#1457#1494#0" expanded="false" />
             <element signature="e#2197#2239#0" expanded="false" />
             <element signature="e#3131#3319#0" expanded="false" />
-            <marker date="1481044986000" expanded="false" signature="3904:3947" ph="{...}" />
+            <element signature="e#3581#3624#0" expanded="false" />
           </folding>
         </state>
       </provider>
