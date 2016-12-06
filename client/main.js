@@ -120,8 +120,7 @@ Template.addIngredients.events({
 
 Suggestions = new Mongo.Collection('suggestions');
 
-Suggestions._collection.insert({ name: "Jus d'orange", score: 0 });
-Suggestions._collection.insert({ name: "Coca", score: 10 });
+
 
 Template.suggestions.helpers({
     'suggestions': function(){
