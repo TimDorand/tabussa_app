@@ -57,6 +57,13 @@ HTTP.call( 'POST', 'http://timothee-dorand.fr/tabussa/API/drinks', {
         arrayDrinks = JSON.parse(response.content);
         for(i=0; i < arrayDrinks.length; i++){
             drinks.push(arrayDrinks[i].name);
+            if(arrayDrinks[i].color){
+                drinks.push(arrayDrinks[i].color);
+            }else{
+                arrayDrinks[i].color="black";
+                drinks.push(arrayDrinks[i].color);
+            }
+
             allDrinks.push(arrayDrinks[i]);
         }
         // console.log(drinks);
@@ -101,6 +108,7 @@ Template.addIngredients.events({
         for(i=0; i < allDrinks.length; i++) {
             if (ingredientName == allDrinks[i].name) {
                 var ingredientId = allDrinks[i].id;
+                var ingredientColor = allDrinks[i].color;
                 var flagingredient = true;
             }
         }
@@ -110,7 +118,8 @@ Template.addIngredients.events({
             console.log('pas d ingredient trouve');
         }
         Ingredients._collection.insert({
-            name: ingredientName
+            name: ingredientName,
+            color: ingredientColor
         });
         myCocktailSuggestions(mycocktail);
 
