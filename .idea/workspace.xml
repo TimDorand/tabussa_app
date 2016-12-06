@@ -10,13 +10,18 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/imports/ui/body.html" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/imports/ui/body.js" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+<<<<<<< HEAD
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.meteor/packages" afterPath="$PROJECT_DIR$/.meteor/packages" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.meteor/release" afterPath="$PROJECT_DIR$/.meteor/release" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.meteor/versions" afterPath="$PROJECT_DIR$/.meteor/versions" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/main.css" afterPath="$PROJECT_DIR$/client/main.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/main.html" afterPath="$PROJECT_DIR$/client/main.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/main.js" afterPath="$PROJECT_DIR$/client/main.js" />
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/main.css" afterPath="$PROJECT_DIR$/client/main.css" />
+>>>>>>> d7ac5c1364786dec60cf2df6bdfc52449f9a2050
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/stylesheets/style.css" afterPath="$PROJECT_DIR$/client/stylesheets/style.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/templates/cocktails/ingredients_list.html" afterPath="$PROJECT_DIR$/client/templates/cocktails/ingredients_list.html" />
     </list>
     <ignored path="tabussa_app.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,8 +45,13 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/main.js">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="345">
               <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+=======
+            <state relative-caret-position="-240">
+              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+>>>>>>> d7ac5c1364786dec60cf2df6bdfc52449f9a2050
               <folding>
                 <element signature="e#0#45#0" expanded="true" />
               </folding>
@@ -72,8 +82,13 @@
       <file leaf-file-name="ingredients_list.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/templates/cocktails/ingredients_list.html">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="270">
               <caret line="18" column="11" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+=======
+            <state relative-caret-position="240">
+              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+>>>>>>> d7ac5c1364786dec60cf2df6bdfc52449f9a2050
               <folding />
             </state>
           </provider>
@@ -82,8 +97,13 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/stylesheets/style.css">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="320">
               <caret line="175" column="20" selection-start-line="175" selection-start-column="20" selection-end-line="175" selection-end-column="20" />
+=======
+            <state relative-caret-position="495">
+              <caret line="169" column="0" selection-start-line="169" selection-start-column="0" selection-end-line="169" selection-end-column="0" />
+>>>>>>> d7ac5c1364786dec60cf2df6bdfc52449f9a2050
               <folding />
             </state>
           </provider>
@@ -94,6 +114,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="225">
               <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="main.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/client/main.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="81" column="16" selection-start-line="81" selection-start-column="16" selection-end-line="81" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -125,6 +155,7 @@
         <option value="$PROJECT_DIR$/.meteor/packages" />
         <option value="$PROJECT_DIR$/imports/ui/body.js" />
         <option value="$PROJECT_DIR$/imports/ui/body.html" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/client/templates/cocktails/ingredients_list.html" />
         <option value="$PROJECT_DIR$/client/main.css" />
         <option value="$PROJECT_DIR$/client/stylesheets/style.css" />
@@ -132,6 +163,13 @@
         <option value="$PROJECT_DIR$/imports/library/touch-punch.js" />
         <option value="$PROJECT_DIR$/imports/library/jquery-ui.js" />
         <option value="$PROJECT_DIR$/client/main.js" />
+=======
+        <option value="$PROJECT_DIR$/client/main.html" />
+        <option value="$PROJECT_DIR$/client/main.js" />
+        <option value="$PROJECT_DIR$/client/templates/cocktails/ingredients_list.html" />
+        <option value="$PROJECT_DIR$/client/stylesheets/style.css" />
+        <option value="$PROJECT_DIR$/client/main.css" />
+>>>>>>> d7ac5c1364786dec60cf2df6bdfc52449f9a2050
       </list>
     </option>
   </component>
@@ -400,8 +438,12 @@
       <workItem from="1480598819466" duration="1407000" />
       <workItem from="1480611914263" duration="3199000" />
       <workItem from="1480669632320" duration="30000" />
+<<<<<<< HEAD
       <workItem from="1481033246903" duration="4610000" />
       <workItem from="1481039816033" duration="717000" />
+=======
+      <workItem from="1481033246903" duration="5463000" />
+>>>>>>> d7ac5c1364786dec60cf2df6bdfc52449f9a2050
     </task>
     <task id="LOCAL-00001" summary="Add localy new ingredients">
       <created>1481038355633</created>
@@ -410,11 +452,29 @@
       <option name="project" value="LOCAL" />
       <updated>1481038355633</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fix list jquery">
+      <created>1481038709887</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1481038709887</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fix touch action">
+      <created>1481038816491</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1481038816491</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="23721000" />
+=======
+    <option name="totallyTimeSpent" value="23857000" />
+>>>>>>> d7ac5c1364786dec60cf2df6bdfc52449f9a2050
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -454,7 +514,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add localy new ingredients" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add localy new ingredients" />
+    <MESSAGE value="fix list jquery" />
+    <MESSAGE value="fix touch action" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix touch action" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -680,6 +742,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/client/stylesheets/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="320">
@@ -689,6 +752,9 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/client/main.html">
+=======
+    <entry file="file://$PROJECT_DIR$/imports/library/jquery-ui.css">
+>>>>>>> d7ac5c1364786dec60cf2df6bdfc52449f9a2050
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
@@ -696,18 +762,32 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/client/templates/cocktails/ingredients_list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
           <caret line="18" column="11" selection-start-line="18" selection-start-column="11" selection-end-line="18" selection-end-column="11" />
+=======
+    <entry file="file://$PROJECT_DIR$/client/main.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="81" column="16" selection-start-line="81" selection-start-column="16" selection-end-line="81" selection-end-column="16" />
+>>>>>>> d7ac5c1364786dec60cf2df6bdfc52449f9a2050
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/imports/library/touch-punch.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="10" column="26" selection-start-line="0" selection-start-column="0" selection-end-line="10" selection-end-column="1090" />
+=======
+    <entry file="file://$PROJECT_DIR$/client/stylesheets/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="495">
+          <caret line="169" column="0" selection-start-line="169" selection-start-column="0" selection-end-line="169" selection-end-column="0" />
+>>>>>>> d7ac5c1364786dec60cf2df6bdfc52449f9a2050
           <folding />
         </state>
       </provider>
@@ -720,10 +800,28 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/client/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+          </folding>
+=======
+    <entry file="file://$PROJECT_DIR$/client/templates/cocktails/ingredients_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+>>>>>>> d7ac5c1364786dec60cf2df6bdfc52449f9a2050
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/main.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-240">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
             <element signature="e#0#45#0" expanded="true" />
           </folding>

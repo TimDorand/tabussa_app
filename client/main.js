@@ -25,7 +25,6 @@ function touchHandler(event) {
 }
 
 
-
 $( function() {
     // $( "#draggable3" ).draggable({ axis: "y" });
     $( "#draggable" ).draggable({ axis: "x" });
