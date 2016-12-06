@@ -109,7 +109,6 @@ Template.addIngredients.events({
         Ingredients._collection.insert({
             name: ingredientName
         });
-        console.log(mycocktail);
         myCocktailSuggestions(mycocktail)
 
     }
