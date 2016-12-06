@@ -49,6 +49,7 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/main.js">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
             <state relative-caret-position="345">
@@ -61,6 +62,10 @@
             <state relative-caret-position="264">
               <caret line="136" column="35" selection-start-line="136" selection-start-column="35" selection-end-line="136" selection-end-column="35" />
 >>>>>>> 35173587560fd5c1b8a163eadbd63eefd1883b1d
+=======
+            <state relative-caret-position="369">
+              <caret line="136" column="32" selection-start-line="136" selection-start-column="32" selection-end-line="136" selection-end-column="32" />
+>>>>>>> Stashed changes
               <folding>
                 <element signature="n#!!block;n#touchHandler#0" expanded="false" />
                 <element signature="e#380#496#0" expanded="false" />
@@ -457,6 +462,7 @@
       <workItem from="1480598819466" duration="1407000" />
       <workItem from="1480611914263" duration="3199000" />
       <workItem from="1480669632320" duration="30000" />
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
       <workItem from="1481033246903" duration="4610000" />
@@ -467,6 +473,9 @@
 =======
       <workItem from="1481033246903" duration="9589000" />
 >>>>>>> 35173587560fd5c1b8a163eadbd63eefd1883b1d
+=======
+      <workItem from="1481033246903" duration="10582000" />
+>>>>>>> Stashed changes
     </task>
     <task id="LOCAL-00001" summary="Add localy new ingredients">
       <created>1481038355633</created>
@@ -503,10 +512,18 @@
       <option name="project" value="LOCAL" />
       <updated>1481045251426</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="meteor API call push">
+      <created>1481045297672</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1481045297672</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
     <option name="totallyTimeSpent" value="23721000" />
@@ -522,6 +539,15 @@
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2786753" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+=======
+    <option name="totallyTimeSpent" value="28976000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="23" width="1440" height="836" extended-state="6" />
+    <editor active="false" />
+    <layout>
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2746781" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+>>>>>>> Stashed changes
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -559,7 +585,8 @@
     <MESSAGE value="fix touch action" />
     <MESSAGE value="style ingredients temporaire" />
     <MESSAGE value="trying to get post data back" />
-    <option name="LAST_COMMIT_MESSAGE" value="trying to get post data back" />
+    <MESSAGE value="meteor API call push" />
+    <option name="LAST_COMMIT_MESSAGE" value="meteor API call push" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -905,8 +932,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="136" column="35" selection-start-line="136" selection-start-column="35" selection-end-line="136" selection-end-column="35" />
+        <state relative-caret-position="369">
+          <caret line="136" column="32" selection-start-line="136" selection-start-column="32" selection-end-line="136" selection-end-column="32" />
           <folding>
             <element signature="n#!!block;n#touchHandler#0" expanded="false" />
             <element signature="e#380#496#0" expanded="false" />

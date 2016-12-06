@@ -109,7 +109,6 @@ Template.addIngredients.events({
         Ingredients._collection.insert({
             name: ingredientName
         });
-        console.log(mycocktail);
         myCocktailSuggestions(mycocktail)
 
     }
@@ -148,7 +147,7 @@ function myCocktailSuggestions(mycocktail) {
 
     HTTP.call('POST', 'http://timothee-dorand.fr/tabussa/API/cocktail', {
         data: {
-            "drinks": "mes boissons"
+            "drinks": mycocktail
         }
     }, function (error, response) {
         if (error) {
