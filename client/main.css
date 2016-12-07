@@ -15,10 +15,11 @@ html, body {
     height: 100%;
     overflow: hidden;
     /*background-color: #fddfdf;*/
-    background-image: url('images/fond.jpg');
+    background-image: url('images/fond4.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    /*background-color: #f1a899;*/
 
 }
 
@@ -27,11 +28,12 @@ h1, h2, h3, p, b{
 }
 
 label {
-    font-size: 3em;
+    font-size: 1em;
 }
 
 p, input{
-    font-size:20px;
+    font-size:0.8em;
+    padding: 0;
 }
 /* Cocktail   */
 
@@ -55,7 +57,7 @@ p, input{
 
     min-height: 40px;
     height: 30%;
-    max-height: 200px;
+    max-height: 50px;
     flex: 1 1 auto;
 
 }
@@ -78,18 +80,53 @@ h3 { clear: left; }
 
 .cockail_image {
     height: 10%;
+
+}
+
+
+.boisson {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: absolute;
+    left:0;
+    bottom: 13%;
+    height: 80%;
+    width: 100%;
+    z-index: 2;
+    text-align: center;
+}
+.couleur {
+    margin: 0 auto;
+    width: 20%;
+    height: 90%;
+    viewbox:0 0 20 20;
+    /*background-color: #003eff;*/
 }
 .img-responsive{
     position: absolute;
-    height:100%;
-    width:auto;
+    width: 90%;
+    height:80%;
+    right: auto;
+    left: auto;
+    bottom: 0;
     text-align:center;
+
+}
+svg {
+    z-index: 2;
+}
+.img-responsive img {
+    position: relative;
+    z-index: 200;
+    height: 100%;
 }
 .ui-widget-content {
     background-color: inherit !important;
 }
 .ui-resizable-s {
-   height:50px !important;
+   height:4vh !important;
     width: 100%;
     background-image: URL('images/menu-defil.png');
     background-size: contain;
@@ -98,7 +135,7 @@ h3 { clear: left; }
     background-color: rgba(255,255,255,0.1);
     border: 1px solid rgb(255,255,255);
     position: absolute;
-    bottom:-50px !important;
+    bottom:-4vh !important;
 }
 
 
@@ -112,7 +149,6 @@ h3 { clear: left; }
     background: none;
     border: none;
     border-bottom: 1px solid white;
-    font-size:40px;
     text-align: center;
 }
 ::-webkit-input-placeholder{
@@ -132,27 +168,33 @@ textarea:focus, input:focus{
 ul {
     padding: 0;
 }
+.ui-autocomplete {
+    -moz-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.4);
+    -webkit-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.4);
+    -o-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.4);
+    box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.4);
+
+}
 .ui-autocomplete li{
-    font-size:40px !important;
-    padding:20px 0 20px 0;
-    border-bottom: 1px solid #2b2b2b;
+    padding:10px 10px 10px 10px;
+
+    border-bottom:1px solid rgba(240, 147, 127, 0.5);
     background-color: white;
 
 }
 
+
 .ingredientsList li{
     display: flex;
     align-items: center;
-    font-size: 40px;
-    padding:3% ;
+    font-size: 20px;
+    padding: 0 1% 0 3%;
     list-style: none;
-    border-bottom:1px solid black;
-    border-left:1px solid black;
-    border-right:1px solid black;
+    border-bottom:1px solid rgba(240, 147, 127, 0.5);
     width: 94%;
 }
-.list li:nth-child(1), .list2 li:nth-child(1){
-    border-top:1px solid black;
+.list li:last-child, .list2 li:last-child, .ui-autocomplete li:last-child{
+    border-bottom:none;
 }
     /* content white */
 .content_white{
@@ -168,11 +210,12 @@ ul {
 
 }
 .content_white h2 {
-    font-size: 1.8em;
+    font-size: 0.9em;
 }
 .rond {
-    width: 30px;
-    height: 30px;
+    background-color: #f0937f;
+    width: 20px;
+    height: 20px;
     border-radius: 15px;
     margin-right: 2%;
 }
@@ -183,7 +226,6 @@ ul {
     position: fixed;
     align-items: flex-start;
     padding-right:8%;
-    width: 80%;
     bottom: 0;
     height: 18%;
     display: flex;
@@ -194,16 +236,16 @@ ul {
 }
 .bulle {
 
-
+    width: 50%;
     background-color: white;
-    flex: 1 0 auto;
+    padding: 2% 6% 2% 8%;
     -moz-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.2);
     -webkit-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.2);
     -o-box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.2);
     box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.2);
 }
 .bulle p {
-    width: 80%;
-    padding: 2% 1% 2% 8%;
-    font-size: 2em;
+
+    width: 100%;
+    font-size: 0.8em;
 }

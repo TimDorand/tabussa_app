@@ -6,7 +6,7 @@ import '/imports/library/jquery-ui.css';
 import '/imports/library/touch-punch';
 
 // Drag cocktail top
-
+/*
 function touchHandler(event) {
     var touch = event.changedTouches[0];
 
@@ -22,7 +22,7 @@ function touchHandler(event) {
 
     touch.target.dispatchEvent(simulatedEvent);
     event.preventDefault();
-}
+}*/
 
 
 $( function() {
@@ -33,11 +33,25 @@ $( function() {
     $( "#draggable4" ).draggable({ containment: "parent" });
 
     $('#draggable3').resizable({
-        maxHeight: 900,
-        minHeight: 100,
+        maxHeight: 300,
+        minHeight: 70,
     });
 
 } );
+
+$(document).ready(function(){
+    $(".img-responsive img").load(function() {
+        width_socle_verre=$(this).height();
+        new_width_socle=width_socle_verre-(width_socle_verre*52/100);
+        $('.couleur').width(new_width_socle);
+
+    });
+    $('.ui-resizable-handle').mousemove(function () {
+        width_socle_verre=$(".img-responsive img").height();
+        new_width_socle=width_socle_verre-(width_socle_verre*52/100);
+        $('.couleur').width(new_width_socle);
+    });
+});
 
 
 // Calling API for all drinks
@@ -58,9 +72,6 @@ HTTP.call( 'POST', 'http://timothee-dorand.fr/tabussa/API/drinks', {
         for(i=0; i < arrayDrinks.length; i++){
             drinks.push(arrayDrinks[i].name);
             if(arrayDrinks[i].color){
-                drinks.push(arrayDrinks[i].color);
-            }else{
-                arrayDrinks[i].color="black";
                 drinks.push(arrayDrinks[i].color);
             }
 
@@ -110,6 +121,7 @@ Template.addIngredients.events({
                 var ingredientId = allDrinks[i].id;
                 var ingredientColor = allDrinks[i].color;
                 var flagingredient = true;
+                $('.couleur').html('<path d="M0 0, L20 0, L15 25, L5 25z" fill="'+ingredientColor+'" />');
             }
         }
         if(flagingredient == true){
@@ -121,6 +133,7 @@ Template.addIngredients.events({
             name: ingredientName,
             color: ingredientColor
         });
+
         myCocktailSuggestions(mycocktail);
 
 

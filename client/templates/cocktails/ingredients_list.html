@@ -6,7 +6,7 @@
                 <h2>Mon Cocktail</h2>
                 <div class="list">
                     {{#each ingredients}}
-                    <li><div class="rond" style="background-color: {{color}};"></div> {{name}}</li>
+                    <li><div class="rond" style="background-color: {{color}};"></div><p>{{name}}</p> </li>
                     {{/each}}
                 </div>
                 <p>60 Vues</p>
@@ -21,7 +21,7 @@
     <form>
         <!--<input type="text" placeholder="Type a task here..." name="todoName">-->
         <div class="ui-widget">
-            <input autofocus id="ingredientName" type="text" name="ingredientName" placeholder="Rempli moi ce verre">
+            <input autofocus id="ingredientName" type="text" name="ingredientName" placeholder="Remplis moi ce verre">
         </div>
 
     </form>
