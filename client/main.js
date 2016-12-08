@@ -33,7 +33,7 @@ $( function() {
     $( "#draggable4" ).draggable({ containment: "parent" });
 
     $('#draggable3').resizable({
-        maxHeight: 300,
+        maxHeight: 600,
         minHeight: 70,
     });
 

@@ -441,7 +441,6 @@ button.ui-button::-moz-focus-inner {
 	text-align: center;
 }
 .ui-datepicker .ui-datepicker-title select {
-	font-size: 1em;
 	margin: 1px 0;
 }
 .ui-datepicker select.ui-datepicker-month,
@@ -692,7 +691,6 @@ button.ui-button::-moz-focus-inner {
 	padding-bottom: 1px;
 }
 .ui-selectmenu-menu .ui-menu .ui-selectmenu-optgroup {
-	font-size: 1em;
 	font-weight: bold;
 	line-height: 1.5;
 	padding: 2px 0.4em;
@@ -880,17 +878,14 @@ body .ui-tooltip {
 ----------------------------------*/
 .ui-widget {
 	font-family: Arial,Helvetica,sans-serif;
-	font-size: 1em;
 }
 .ui-widget .ui-widget {
-	font-size: 1em;
 }
 .ui-widget input,
 .ui-widget select,
 .ui-widget textarea,
 .ui-widget button {
 	font-family: Arial,Helvetica,sans-serif;
-	font-size: 1em;
 }
 .ui-widget.ui-widget-content {
 }

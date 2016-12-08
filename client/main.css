@@ -28,11 +28,12 @@ h1, h2, h3, p, b{
 }
 
 label {
-    font-size: 1em;
+    font-size: 3vh;
 }
 
 p, input{
-    font-size:0.8em;
+    margin: 1.5vh;
+    font-size:2vh;
     padding: 0;
 }
 /* Cocktail   */
@@ -55,9 +56,9 @@ p, input{
 }
 .like {
 
-    min-height: 40px;
+    min-height: 2vh;
     height: 30%;
-    max-height: 50px;
+    max-height: 8vh;
     flex: 1 1 auto;
 
 }
@@ -101,7 +102,6 @@ h3 { clear: left; }
     margin: 0 auto;
     width: 20%;
     height: 90%;
-    viewbox:0 0 20 20;
     /*background-color: #003eff;*/
 }
 .img-responsive{
@@ -177,7 +177,7 @@ ul {
 }
 .ui-autocomplete li{
     padding:10px 10px 10px 10px;
-
+    font-size: 2vh;
     border-bottom:1px solid rgba(240, 147, 127, 0.5);
     background-color: white;
 
@@ -187,7 +187,7 @@ ul {
 .ingredientsList li{
     display: flex;
     align-items: center;
-    font-size: 20px;
+    font-size: 3vh;
     padding: 0 1% 0 3%;
     list-style: none;
     border-bottom:1px solid rgba(240, 147, 127, 0.5);
@@ -210,12 +210,12 @@ ul {
 
 }
 .content_white h2 {
-    font-size: 0.9em;
+    font-size: 2vh;
 }
 .rond {
     background-color: #f0937f;
-    width: 20px;
-    height: 20px;
+    width: 3vh;
+    height: 3vh;
     border-radius: 15px;
     margin-right: 2%;
 }
@@ -247,5 +247,5 @@ ul {
 .bulle p {
 
     width: 100%;
-    font-size: 0.8em;
+    font-size: 1.8vh;
 }
