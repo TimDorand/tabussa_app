@@ -220,7 +220,6 @@ Template.suggestions.events({
         if(flagingredient == true){
             mycocktail.push(ingredientId);
         }
-        Ingredients._collection.remove();
 
         Ingredients._collection.insert({
             name: ingredientName,
@@ -298,6 +297,7 @@ function myCocktailSuggestions(mycocktail) {
             if(cocktailSuggestions){
 
 
+                Suggestions._collection.remove({});
                 $.each(cocktailSuggestions, function(index, value) {
                     Suggestions._collection.insert({ name: value.name });
 
@@ -318,6 +318,8 @@ function myCocktailSuggestions(mycocktail) {
                 $('#cocktailInfoProgress').html("");
                 ratioLikes = 100;
                     }
+
+            CocktailInfo._collection.remove({});
             CocktailInfo._collection.insert({
                 visits: cocktailVisits,
                 bonus: cocktailBonus,
