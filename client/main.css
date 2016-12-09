@@ -6,9 +6,6 @@ html, body {
 .body{
     height:100%;
     width:100%;
-
-
-
 }
 .container {
     width: 100%;
@@ -31,7 +28,7 @@ label {
     font-size: 3vh;
 }
 
-p, input{
+p, input, b{
     margin: 1.5vh;
     font-size:2vh;
     padding: 0;
@@ -249,3 +246,24 @@ ul {
     width: 100%;
     font-size: 1.8vh;
 }
+
+/* PROGRESS BAR */
+
+.progress {
+    width: 100%;
+    height: 20px;
+}
+.progress-wrap {
+    background: rgba(73, 191, 99, 0.39);
+    margin: 20px 0;
+    overflow: hidden;
+    position: relative;
+}
+.progress-wrap .progress-bar {
+    background: rgb(255, 188, 175);
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+

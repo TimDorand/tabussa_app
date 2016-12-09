@@ -8,9 +8,9 @@
                     {{#each ingredients}}
                     <li><div class="rond" style="background-color: {{color}};"></div><p>{{name}}</p> </li>
                     {{/each}}
-                </div>
-                <p>60 Vues</p>
+               {{> cocktailInfo}}
 
+            </div>
             </div>
         </ul>
 
@@ -25,4 +25,17 @@
         </div>
 
     </form>
+</template>
+
+
+<template id="cocktailInfo" name="cocktailInfo">
+    {{#each cocktailInfo}}
+    <br>
+    <b style="display: inline; margin: 0;">Vues: {{visits}}</b>
+    <div class="progress-wrap progress" data-progress-percent="{{ratioLikes}}">
+        <div class="progress-bar progress"></div>
+    </div>
+    {{/each}}
+
+
 </template>
