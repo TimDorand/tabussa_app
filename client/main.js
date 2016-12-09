@@ -135,6 +135,7 @@ Template.addIngredients.events({
 
         if(flagingredient == true){
             mycocktail.push(ingredientId);
+            console.log(mycocktail);
         }else{
             console.log('pas d ingredient trouve');
         }
@@ -204,7 +205,6 @@ Template.suggestions.events({
         event.preventDefault();
 
         console.log(event.currentTarget.textContent);
-        var flagingredient = false;
 
         var ingredientName = event.currentTarget.textContent;
 
@@ -213,13 +213,15 @@ Template.suggestions.events({
             if (ingredientName == allDrinks[i].name) {
                 var ingredientId = allDrinks[i].id;
                 var ingredientColor = allDrinks[i].color;
-                flagingredient = true;
+                var flagingredient = true;
                 $('.couleur').html('<path d="M0 0, L20 0, L15 25, L5 25z" fill="'+ingredientColor+'" />');
             }
         }
         if(flagingredient == true){
             mycocktail.push(ingredientId);
         }
+        Ingredients._collection.remove();
+
         Ingredients._collection.insert({
             name: ingredientName,
             color: ingredientColor
@@ -234,6 +236,7 @@ Template.suggestions.events({
 
         $('#cocktailInfoRating').html("");
 
+        console.log(mycocktail);
         myCocktailSuggestions(mycocktail);
 
 
@@ -351,6 +354,8 @@ function myCocktailSuggestions(mycocktail) {
             //console.log('reponse: ');
             //console.log(suggestions);
 
+            // console.log('reponse: ');
+            // console.log(suggestions);
         }
     });
 }
