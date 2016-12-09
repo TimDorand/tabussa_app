@@ -30,10 +30,13 @@
 
 <template id="cocktailInfo" name="cocktailInfo">
     {{#each cocktailInfo}}
-    <br>
-    <b style="display: inline; margin: 0;">Vues: {{visits}}</b>
-    <div class="progress-wrap progress" data-progress-percent="{{ratioLikes}}">
-        <div class="progress-bar progress"></div>
+    <div id="cocktailInfoRating">
+        <br>
+        <b style="display: inline; margin: 0;">Vues: {{visits}}</b>
+
+        <div class="progress-wrap progress" id="cocktailInfoProgress" data-progress-percent="{{ratioLikes}}">
+            <div class="progress-bar progress"></div>
+        </div>
     </div>
     {{/each}}
 

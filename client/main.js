@@ -111,6 +111,7 @@ Template.ingredients.helpers({
 
 var mycocktail = [];
 
+// Nouvel ingredient dans le cocktail
 Template.addIngredients.events({
     'submit form': function (event) {
         event.preventDefault();
@@ -139,18 +140,61 @@ Template.addIngredients.events({
         });
 
 
-        var ratioLikes = (100*cocktailBonus)/(cocktailBonus+cocktailMalus);
+        var cocktailVisits = "";
+        var cocktailBonus = "";
+        var cocktailMalus = "";
+        var totalBonusMalus = "";
+        var ratioLikes = "";
 
-        // $('#progesslikes').progress({
-        //     percent: ratioLikes
-        // });
+        $('#cocktailInfoRating').html("");
+
+        myCocktailSuggestions(mycocktail);
+    },
+});
+
+
+Template.suggestions.events({
+
+// Ajout d'une suggestion au click sur la liste
+    'click .suggestion_single': function(event) {
+        event.preventDefault();
+
+        console.log(event.currentTarget.textContent);
+        var flagingredient = false;
+
+        var ingredientName = event.currentTarget.textContent;
+
+        // A chaque submit on ajoute le nom de l'ingrédient dans un tableau
+        for(i=0; i < allDrinks.length; i++) {
+            if (ingredientName == allDrinks[i].name) {
+                var ingredientId = allDrinks[i].id;
+                var ingredientColor = allDrinks[i].color;
+                flagingredient = true;
+                $('.couleur').html('<path d="M0 0, L20 0, L15 25, L5 25z" fill="'+ingredientColor+'" />');
+            }
+        }
+        if(flagingredient == true){
+            mycocktail.push(ingredientId);
+        }
+        Ingredients._collection.insert({
+            name: ingredientName,
+            color: ingredientColor
+        });
+
+
+        var cocktailVisits = "";
+        var cocktailBonus = "";
+        var cocktailMalus = "";
+        var totalBonusMalus = "";
+        var ratioLikes = "";
+
+        $('#cocktailInfoRating').html("");
 
         myCocktailSuggestions(mycocktail);
 
 
     }
 });
-
 
 
 // Listing des suggestions
@@ -175,9 +219,6 @@ Template.suggestions.helpers({
 
 */
 
-var cocktailVisits;
-var cocktailBonus;
-var cocktailMalus;
 
 CocktailInfo = new Mongo.Collection('cocktailInfo');
 
@@ -185,6 +226,8 @@ Template.cocktailInfo.helpers({
     'cocktailInfo': function(){
         return CocktailInfo.find();
     }});
+
+
 
 function myCocktailSuggestions(mycocktail) {
 
@@ -207,25 +250,27 @@ function myCocktailSuggestions(mycocktail) {
             // Si y'a des suggestions, on les push dans l'array suggestions et on les affiches
             if(cocktailSuggestions){
 
+
                 $.each(cocktailSuggestions, function(index, value) {
-                    $('#cocktailInfo').val("");
                     Suggestions._collection.insert({ name: value.name });
 
                 });
             }
 
 
-            cocktailVisits = arrayCocktails.visits;
-            cocktailBonus = arrayCocktails.bonus;
-            cocktailMalus = arrayCocktails.malus;
-            console.log('bonus:'+cocktailBonus+' '+cocktailMalus);
-            console.log(cocktailBonus+cocktailMalus);
+
+            // Calcul du ratio positif
+
+            var cocktailVisits = arrayCocktails.visits;
+            var cocktailBonus = arrayCocktails.bonus;
+            var cocktailMalus = arrayCocktails.malus;
             var totalBonusMalus = parseInt(cocktailBonus)+parseInt(cocktailMalus);
-
-
             var ratioLikes = 100*parseInt(cocktailBonus)/totalBonusMalus;
 
-
+            if(cocktailBonus == null){
+                $('#cocktailInfoProgress').html("");
+                ratioLikes = 100;
+                    }
             CocktailInfo._collection.insert({
                 visits: cocktailVisits,
                 bonus: cocktailBonus,
@@ -233,7 +278,7 @@ function myCocktailSuggestions(mycocktail) {
                 ratioLikes: ratioLikes
             });
 
-            console.log(ratioLikes);
+
             // on page load...
             moveProgressBar();
             // on browser resize...
@@ -243,7 +288,6 @@ function myCocktailSuggestions(mycocktail) {
 
             // SIGNATURE PROGRESS
             function moveProgressBar() {
-                console.log("moveProgressBar");
                 var getPercent = ($('.progress-wrap').data('progress-percent') / 100);
                 var getProgressWrapWidth = $('.progress-wrap').width();
                 var progressTotal = getPercent * getProgressWrapWidth;
@@ -266,4 +310,3 @@ function myCocktailSuggestions(mycocktail) {
         }
     });
 }
-
