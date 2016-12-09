@@ -115,20 +115,64 @@ Template.addIngredients.events({
 
         $('[name="ingredientName"]').val('');
 
+
         // A chaque submit on ajoute le nom de l'ingrédient dans un tableau
         for(i=0; i < allDrinks.length; i++) {
             if (ingredientName == allDrinks[i].name) {
                 var ingredientId = allDrinks[i].id;
                 var ingredientColor = allDrinks[i].color;
                 var flagingredient = true;
-                $('.couleur').html('<path d="M0 0, L20 0, L15 25, L5 25z" fill="'+ingredientColor+'" />');
+                console.log(mycocktail+1);
+
+
             }
         }
+
         if(flagingredient == true){
             mycocktail.push(ingredientId);
         }else{
             console.log('pas d ingredient trouve');
         }
+        var boisson_svg="";
+        /*switch(mycocktail.length){
+            case 1:
+
+                id=mycocktail[0];
+                console.log("id : "+mycocktail[0]);
+                boisson_svg='<path d="M0 0, L20 0, L15 25, L5 25z" fill="blue" />';
+                break;
+            case 2:
+                boisson_svg='<path d="M0 0, L20 0, L17.5 12.5, L2.5 12.5z" fill="<blue" />';
+                break;
+            default:
+                break;
+        }*/
+        var boisson_svg="";
+        nb_boissons=mycocktail.length;
+        if(nb_boissons>0){
+            var x1=0;
+            var x2=20;
+            var x3=20-5/nb_boissons;
+            var x4=5/nb_boissons;
+            var y1=0;
+            var y2=25/nb_boissons;
+
+            for(i=0; i < nb_boissons; i++) {
+                var back = ["#ff0000","blue","red", "white", "green", "black", "yellow"];
+                var rand = back[Math.floor(Math.random() * back.length)];
+                boisson_svg=boisson_svg+'<path d="M'+x1+' '+y1+', L'+x2+' '+y1+', L'+x3+' '+y2+', L'+x4+' '+y2+'z" fill="'+rand+'" />';
+                x1=x1+5/nb_boissons;
+                x2=x2-5/nb_boissons;
+                x3=x3-5/nb_boissons;
+                x4=x4+5/nb_boissons;
+                y1=y1+25/nb_boissons;
+                y2=y1+25/nb_boissons;
+            }
+        }
+
+        $('.couleur').html(boisson_svg);
+
+
         Ingredients._collection.insert({
             name: ingredientName,
             color: ingredientColor
@@ -174,11 +218,11 @@ function myCocktailSuggestions(mycocktail) {
         }
     }, function (error, response) {
         if (error) {
-            console.log(error);
+            //console.log(error);
         } else {
-            console.log(response);
+            //console.log(response);
             var arrayCocktails = JSON.parse(response.content);
-            console.log(arrayCocktails);
+            //console.log(arrayCocktails);
 
             var cocktailSuggestions = arrayCocktails.suggestions;
 
@@ -195,8 +239,8 @@ function myCocktailSuggestions(mycocktail) {
             for (i = 0; i < arrayCocktails.length; i++) {
                 suggestions.push(arrayCocktails[i].name);
             }
-            console.log('reponse: ');
-            console.log(suggestions);
+            //console.log('reponse: ');
+            //console.log(suggestions);
 
         }
     });
