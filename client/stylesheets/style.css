@@ -10,7 +10,7 @@ html, body {
     margin: 0;
     height: 100%;
     width: 100%;
-    font-family:Helvetica, sans-serif;
+    font-family: Raleway, sans-serif !important;
 }
 body {
     color: #666666; }

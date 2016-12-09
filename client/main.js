@@ -5,6 +5,12 @@ import '/imports/library/jquery-ui.js';
 import '/imports/library/jquery-ui.css';
 import '/imports/library/touch-punch';
 
+
+NProgress.start();
+// Do something, like loading...
+NProgress.done();
+
+
 // Drag cocktail top
 /*
 function touchHandler(event) {
@@ -97,16 +103,15 @@ $( function() { // input de recherche des tags
 
 Ingredients = new Mongo.Collection('ingredients');
 
-// Ingredients._collection.insert({ name: "Vokda" });
-// Ingredients._collection.insert({ name: "Pastis" });
-
 Template.ingredients.helpers({
     'ingredients': function(){
         return Ingredients.find();
     }});
 
+
 var mycocktail = [];
 
+// Nouvel ingredient dans le cocktail
 Template.addIngredients.events({
     'submit form': function (event) {
         event.preventDefault();
@@ -178,12 +183,62 @@ Template.addIngredients.events({
             color: ingredientColor
         });
 
+
+        var cocktailVisits = "";
+        var cocktailBonus = "";
+        var cocktailMalus = "";
+        var totalBonusMalus = "";
+        var ratioLikes = "";
+
+        $('#cocktailInfoRating').html("");
+
+        myCocktailSuggestions(mycocktail);
+    },
+});
+
+
+Template.suggestions.events({
+
+// Ajout d'une suggestion au click sur la liste
+    'click .suggestion_single': function(event) {
+        event.preventDefault();
+
+        console.log(event.currentTarget.textContent);
+        var flagingredient = false;
+
+        var ingredientName = event.currentTarget.textContent;
+
+        // A chaque submit on ajoute le nom de l'ingrédient dans un tableau
+        for(i=0; i < allDrinks.length; i++) {
+            if (ingredientName == allDrinks[i].name) {
+                var ingredientId = allDrinks[i].id;
+                var ingredientColor = allDrinks[i].color;
+                flagingredient = true;
+                $('.couleur').html('<path d="M0 0, L20 0, L15 25, L5 25z" fill="'+ingredientColor+'" />');
+            }
+        }
+        if(flagingredient == true){
+            mycocktail.push(ingredientId);
+        }
+        Ingredients._collection.insert({
+            name: ingredientName,
+            color: ingredientColor
+        });
+
+
+        var cocktailVisits = "";
+        var cocktailBonus = "";
+        var cocktailMalus = "";
+        var totalBonusMalus = "";
+        var ratioLikes = "";
+
+        $('#cocktailInfoRating').html("");
+
         myCocktailSuggestions(mycocktail);
 
 
     }
 });
-
 
 
 // Listing des suggestions
@@ -208,6 +263,16 @@ Template.suggestions.helpers({
 
 */
 
+
+CocktailInfo = new Mongo.Collection('cocktailInfo');
+
+Template.cocktailInfo.helpers({
+    'cocktailInfo': function(){
+        return CocktailInfo.find();
+    }});
+
+
+
 function myCocktailSuggestions(mycocktail) {
 
     var suggestions= [];
@@ -229,10 +294,54 @@ function myCocktailSuggestions(mycocktail) {
             // Si y'a des suggestions, on les push dans l'array suggestions et on les affiches
             if(cocktailSuggestions){
 
+
                 $.each(cocktailSuggestions, function(index, value) {
                     Suggestions._collection.insert({ name: value.name });
 
                 });
+            }
+
+
+
+            // Calcul du ratio positif
+
+            var cocktailVisits = arrayCocktails.visits;
+            var cocktailBonus = arrayCocktails.bonus;
+            var cocktailMalus = arrayCocktails.malus;
+            var totalBonusMalus = parseInt(cocktailBonus)+parseInt(cocktailMalus);
+            var ratioLikes = 100*parseInt(cocktailBonus)/totalBonusMalus;
+
+            if(cocktailBonus == null){
+                $('#cocktailInfoProgress').html("");
+                ratioLikes = 100;
+                    }
+            CocktailInfo._collection.insert({
+                visits: cocktailVisits,
+                bonus: cocktailBonus,
+                malus: cocktailMalus,
+                ratioLikes: ratioLikes
+            });
+
+
+            // on page load...
+            moveProgressBar();
+            // on browser resize...
+            $(window).resize(function() {
+                moveProgressBar();
+            });
+
+            // SIGNATURE PROGRESS
+            function moveProgressBar() {
+                var getPercent = ($('.progress-wrap').data('progress-percent') / 100);
+                var getProgressWrapWidth = $('.progress-wrap').width();
+                var progressTotal = getPercent * getProgressWrapWidth;
+                var animationLength = 2500;
+
+                // on page load, animate percentage bar to data percentage length
+                // .stop() used to prevent animation queueing
+                $('.progress-bar').stop().animate({
+                    left: progressTotal
+                }, animationLength);
             }
 
 
@@ -245,4 +354,3 @@ function myCocktailSuggestions(mycocktail) {
         }
     });
 }
-
