@@ -207,6 +207,24 @@ Template.suggestions.events({
     }
 });
 
+/*------------------------------------------------------------*/
+// Reinitialisation de tout
+/*-------------------------------------------------------------------*/
+
+Template.ingredients.events({
+    'click #clearAll': function(event){
+        event.preventDefault();
+
+        Ingredients._collection.remove({});
+        Suggestions._collection.remove({});
+        CocktailInfo._collection.remove({});
+        MessageUser._collection.remove({});
+        MessageUser._collection.insert({ message: "Oouai ! Cul sec !" });
+
+
+    }
+});
+
 /*-------------------------------------------------------------------*/
 // Listing des suggestions
 /*-------------------------------------------------------------------*/
@@ -315,7 +333,7 @@ function myCocktailSuggestions(mycocktail) {
             }else if(ratioLikes > 90){
                 MessageUser._collection.remove({});
                 MessageUser._collection.insert({ message: "Oh, mon préféré !" });
-            }else if(ratioLikes = "NaN" && cocktailVisits == 0){
+            }else if(ratioLikes = "NaN" && cocktailVisits == 1){
                 MessageUser._collection.remove({});
                 MessageUser._collection.insert({ message: "Ça alors ! T'es le premier à avoir trouvé ça !" });
             }else if(ratioLikes = "NaN" && cocktailVisits > 0){
