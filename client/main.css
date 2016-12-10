@@ -53,6 +53,7 @@ p, input, b{
 }
 .like {
 
+    z-index: 99999 !important;
     min-height: 2vh;
     height: 30%;
     max-height: 8vh;
