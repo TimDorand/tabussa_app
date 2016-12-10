@@ -1,8 +1,11 @@
-<template name="message">
+<template name="messageUser">
     <div class="message">
         <img src="images/tabussa.png" >
         <div class="bulle">
-            <p>Bon tu me mets quelque chose dans ce verre ?</p>
+            {{#each messageUser}}
+
+            <p>{{message}}</p>
+            {{/each}}
         </div>
     </div>
 </template>

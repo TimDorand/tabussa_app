@@ -10,25 +10,9 @@ NProgress.start();
 // Do something, like loading...
 NProgress.done();
 
-
-// Drag cocktail top
-/*
-function touchHandler(event) {
-    var touch = event.changedTouches[0];
-
-    var simulatedEvent = document.createEvent("MouseEvent");
-    simulatedEvent.initMouseEvent({
-            touchstart: "mousedown",
-            touchmove: "mousemove",
-            touchend: "mouseup"
-        }[event.type], true, true, window, 1,
-        touch.screenX, touch.screenY,
-        touch.clientX, touch.clientY, false,
-        false, false, false, 0, null);
-
-    touch.target.dispatchEvent(simulatedEvent);
-    event.preventDefault();
-}*/
+/*-------------------------------------------------------------------*/
+// Touch handler
+/*-------------------------------------------------------------------*/
 
 
 $( function() {
@@ -45,6 +29,7 @@ $( function() {
 
 } );
 
+/*
 $(document).ready(function(){
     $(".img-responsive img").load(function() {
         width_socle_verre=$(this).height();
@@ -58,9 +43,13 @@ $(document).ready(function(){
         $('.couleur').width(new_width_socle);
     });
 });
+*/
 
 
+/*-------------------------------------------------------------------*/
 // Calling API for all drinks
+/*-------------------------------------------------------------------*/
+
 
 var drinks = []; // tableau des brevages uniquement ['vodka', 'rhum']
 var allDrinks = []; // tableau des brevages entiers [{'id':'81', 'name':'vodka', 'color':'blue', 'type':'alcool'}, {}, {}, ... ]
@@ -99,7 +88,10 @@ $( function() { // input de recherche des tags
 } );
 
 
+/*-------------------------------------------------------------------*/
 // Listing des ingrédients du cocktail
+/*-------------------------------------------------------------------*/
+
 
 Ingredients = new Mongo.Collection('ingredients');
 
@@ -111,7 +103,11 @@ Template.ingredients.helpers({
 
 var mycocktail = [];
 
+/*-------------------------------------------------------------------*/
 // Nouvel ingredient dans le cocktail
+/*-------------------------------------------------------------------*/
+
+
 Template.addIngredients.events({
     'submit form': function (event) {
         event.preventDefault();
@@ -162,23 +158,19 @@ Template.addIngredients.events({
             color: ingredientColor
         });
 
-
-        var cocktailVisits = "";
-        var cocktailBonus = "";
-        var cocktailMalus = "";
-        var totalBonusMalus = "";
-        var ratioLikes = "";
-
         $('#cocktailInfoRating').html("");
 
         myCocktailSuggestions(mycocktail);
     },
 });
 
+/*-------------------------------------------------------------------*/
+// Ajout d'une suggestion au click sur la liste
+/*-------------------------------------------------------------------*/
+
 
 Template.suggestions.events({
 
-// Ajout d'une suggestion au click sur la liste
     'click .suggestion_single': function(event) {
         event.preventDefault();
 
@@ -204,12 +196,7 @@ Template.suggestions.events({
             color: ingredientColor
         });
 
-
-        var cocktailVisits = "";
-        var cocktailBonus = "";
-        var cocktailMalus = "";
-        var totalBonusMalus = "";
-        var ratioLikes = "";
+        new_boisson_cocktail();
 
         $('#cocktailInfoRating').html("");
 
@@ -220,8 +207,9 @@ Template.suggestions.events({
     }
 });
 
-
+/*-------------------------------------------------------------------*/
 // Listing des suggestions
+/*-------------------------------------------------------------------*/
 
 Suggestions = new Mongo.Collection('suggestions');
 
@@ -230,17 +218,15 @@ Template.suggestions.helpers({
         return Suggestions.find();
     }});
 
+
+/*-------------------------------------------------------------------*/
 // Récupérer les infos du dernier cocktail envoyé et les suggestions
+/*-------------------------------------------------------------------*/
 
 /* Methode
-1) Post array drinks [
-    0 => "id_cocktail_1",
-    1 => 'id_cocktail_2'
-]
-
+1) Post array drinks [0 => "id_cocktail_1",1 => 'id_cocktail_2']
 2) Récupérer les infos de "Mon cocktail"
 3) Récupérer toutes suggestions et les infos de chacune
-
 */
 
 
@@ -251,6 +237,11 @@ Template.cocktailInfo.helpers({
         return CocktailInfo.find();
     }});
 
+var cocktailVisits;
+var cocktailBonus;
+var cocktailMalus;
+var totalBonusMalus;
+var ratioLikes;
 
 
 function myCocktailSuggestions(mycocktail) {
@@ -292,10 +283,9 @@ function myCocktailSuggestions(mycocktail) {
             var totalBonusMalus = parseInt(cocktailBonus)+parseInt(cocktailMalus);
             var ratioLikes = 100*parseInt(cocktailBonus)/totalBonusMalus;
 
-            if(cocktailBonus == null){
-                $('#cocktailInfoProgress').html("");
+            if(cocktailBonus = null){
                 ratioLikes = 100;
-                    }
+            }
 
             CocktailInfo._collection.remove({});
             CocktailInfo._collection.insert({
@@ -304,6 +294,37 @@ function myCocktailSuggestions(mycocktail) {
                 malus: cocktailMalus,
                 ratioLikes: ratioLikes
             });
+
+            console.log(ratioLikes);
+
+
+
+            // Message User
+
+            if(cocktailVisits > 300){
+                MessageUser._collection.remove({});
+                MessageUser._collection.insert({ message: "Ah d'accord, pas très original..." });
+            }else if(ratioLikes < 50){
+                MessageUser._collection.remove({});
+                MessageUser._collection.insert({ message: "Pas très bon ça !" });
+
+            }else if(ratioLikes > 50 && ratioLikes < 90){
+                MessageUser._collection.remove({});
+                MessageUser._collection.insert({ message: "Ça c'est pas mal !" });
+
+            }else if(ratioLikes > 90){
+                MessageUser._collection.remove({});
+                MessageUser._collection.insert({ message: "Oh, mon préféré !" });
+            }else if(ratioLikes = "NaN" && cocktailVisits == 0){
+                MessageUser._collection.remove({});
+                MessageUser._collection.insert({ message: "Ça alors ! T'es le premier à avoir trouvé ça !" });
+            }else if(ratioLikes = "NaN" && cocktailVisits > 0){
+                MessageUser._collection.remove({});
+                MessageUser._collection.insert({ message: "Met le premier like sur celui-la !" });
+            }else{
+                MessageUser._collection.remove({});
+                MessageUser._collection.insert({ message: "Bon, tu met quelque chose dans ton verre ?" });
+            }
 
 
             // on page load...
@@ -340,6 +361,12 @@ function myCocktailSuggestions(mycocktail) {
         }
     });
 }
+
+
+/*-------------------------------------------------------------------*/
+// Génération du cocktail visuel
+/*-------------------------------------------------------------------*/
+
 function new_boisson_cocktail(){
     var boisson_svg="";
     nb_boissons=mycocktail.length;
@@ -367,3 +394,16 @@ function new_boisson_cocktail(){
 
     $('.couleur').html(boisson_svg);
 }
+
+
+/*-------------------------------------------------------------------*/
+// Nouveau message du petit bonhomme
+/*-------------------------------------------------------------------*/
+
+MessageUser = new Mongo.Collection('messageUser');
+
+Template.messageUser.helpers({
+    'messageUser': function(){
+        return MessageUser.find();
+    }});
+    MessageUser._collection.insert({ message: "Bon, tu met quelque chose dans ton verre ?" });
