@@ -11,26 +11,6 @@ NProgress.start();
 NProgress.done();
 
 
-// Drag cocktail top
-/*
-function touchHandler(event) {
-    var touch = event.changedTouches[0];
-
-    var simulatedEvent = document.createEvent("MouseEvent");
-    simulatedEvent.initMouseEvent({
-            touchstart: "mousedown",
-            touchmove: "mousemove",
-            touchend: "mouseup"
-        }[event.type], true, true, window, 1,
-        touch.screenX, touch.screenY,
-        touch.clientX, touch.clientY, false,
-        false, false, false, 0, null);
-
-    touch.target.dispatchEvent(simulatedEvent);
-    event.preventDefault();
-}*/
-
-
 $( function() {
     // $( "#draggable3" ).draggable({ axis: "y" });
     $( "#draggable" ).draggable({ axis: "x" });
@@ -60,6 +40,9 @@ $(document).ready(function(){
 });
 
 
+
+
+
 // Calling API for all drinks
 
 var drinks = []; // tableau des brevages uniquement ['vodka', 'rhum']
@@ -79,6 +62,8 @@ HTTP.call( 'POST', 'http://timothee-dorand.fr/tabussa/API/drinks', {
             drinks.push(arrayDrinks[i].name);
             if(arrayDrinks[i].color){
                 drinks.push(arrayDrinks[i].color);
+            }else{
+                arrayDrinks[i].color="#f0937f";
             }
 
             allDrinks.push(arrayDrinks[i]);
@@ -90,7 +75,7 @@ HTTP.call( 'POST', 'http://timothee-dorand.fr/tabussa/API/drinks', {
 });
 
 
-
+//auto complete
 $( function() { // input de recherche des tags
 
     $( "#ingredientName" ).autocomplete({
@@ -100,7 +85,6 @@ $( function() { // input de recherche des tags
 
 
 // Listing des ingrédients du cocktail
-
 Ingredients = new Mongo.Collection('ingredients');
 
 Template.ingredients.helpers({
@@ -110,6 +94,8 @@ Template.ingredients.helpers({
 
 
 var mycocktail = [];
+var mycocktaildetail = [];
+var ingredient = {};
 
 // Nouvel ingredient dans le cocktail
 Template.addIngredients.events({
@@ -118,49 +104,12 @@ Template.addIngredients.events({
 
         var ingredientName = $('[name="ingredientName"]').val();
 
+
+        //get input
         $('[name="ingredientName"]').val('');
 
 
-        // A chaque submit on ajoute le nom de l'ingrédient dans un tableau
-        for(i=0; i < allDrinks.length; i++) {
-            if (ingredientName == allDrinks[i].name) {
-                var ingredientId = allDrinks[i].id;
-                var ingredientColor = allDrinks[i].color;
-                var flagingredient = true;
-                console.log(mycocktail+1);
-
-
-            }
-        }
-
-        if(flagingredient == true){
-            mycocktail.push(ingredientId);
-            console.log(mycocktail);
-        }else{
-            console.log('pas d ingredient trouve');
-        }
-        var boisson_svg="";
-        /*switch(mycocktail.length){
-            case 1:
-
-                id=mycocktail[0];
-                console.log("id : "+mycocktail[0]);
-                boisson_svg='<path d="M0 0, L20 0, L15 25, L5 25z" fill="blue" />';
-                break;
-            case 2:
-                boisson_svg='<path d="M0 0, L20 0, L17.5 12.5, L2.5 12.5z" fill="<blue" />';
-                break;
-            default:
-                break;
-        }*/
-        new_boisson_cocktail();
-
-
-
-        Ingredients._collection.insert({
-            name: ingredientName,
-            color: ingredientColor
-        });
+        addIngredientToCocktail(ingredientName);
 
 
         var cocktailVisits = "";
@@ -182,26 +131,28 @@ Template.suggestions.events({
     'click .suggestion_single': function(event) {
         event.preventDefault();
 
-        console.log(event.currentTarget.textContent);
+        //console.log(event.currentTarget.textContent);
 
         var ingredientName = event.currentTarget.textContent;
 
         // A chaque submit on ajoute le nom de l'ingrédient dans un tableau
         for(i=0; i < allDrinks.length; i++) {
             if (ingredientName == allDrinks[i].name) {
+
                 var ingredientId = allDrinks[i].id;
-                var ingredientColor = allDrinks[i].color;
+                ingredient.id = allDrinks[i].id;
+                ingredient.color = allDrinks[i].color;
                 var flagingredient = true;
-                $('.couleur').html('<path d="M0 0, L20 0, L15 25, L5 25z" fill="'+ingredientColor+'" />');
             }
         }
         if(flagingredient == true){
             mycocktail.push(ingredientId);
+            mycocktaildetail.push(ingredient);
         }
 
         Ingredients._collection.insert({
             name: ingredientName,
-            color: ingredientColor
+            color: ingredient.color
         });
 
 
@@ -213,7 +164,6 @@ Template.suggestions.events({
 
         $('#cocktailInfoRating').html("");
 
-        console.log(mycocktail);
         myCocktailSuggestions(mycocktail);
 
 
@@ -230,18 +180,6 @@ Template.suggestions.helpers({
         return Suggestions.find();
     }});
 
-// Récupérer les infos du dernier cocktail envoyé et les suggestions
-
-/* Methode
-1) Post array drinks [
-    0 => "id_cocktail_1",
-    1 => 'id_cocktail_2'
-]
-
-2) Récupérer les infos de "Mon cocktail"
-3) Récupérer toutes suggestions et les infos de chacune
-
-*/
 
 
 CocktailInfo = new Mongo.Collection('cocktailInfo');
@@ -332,17 +270,12 @@ function myCocktailSuggestions(mycocktail) {
                 suggestions.push(arrayCocktails[i].name);
             }
             new_boisson_cocktail();
-            //console.log('reponse: ');
-            //console.log(suggestions);
-
-            // console.log('reponse: ');
-            // console.log(suggestions);
         }
     });
 }
 function new_boisson_cocktail(){
     var boisson_svg="";
-    nb_boissons=mycocktail.length;
+    nb_boissons=mycocktaildetail.length;
     if(nb_boissons>0){
         var x1=0;
         var x2=20;
@@ -355,7 +288,7 @@ function new_boisson_cocktail(){
             var back = ["#ff0000","blue","red", "white", "green", "black", "yellow"];
             var rand = back[Math.floor(Math.random() * back.length)];
 
-            boisson_svg=boisson_svg+'<path d="M'+x1+' '+y1+', L'+x2+' '+y1+', L'+x3+' '+y2+', L'+x4+' '+y2+'z" fill="'+rand+'" />';
+            boisson_svg=boisson_svg+'<path d="M'+x1+' '+y1+', L'+x2+' '+y1+', L'+x3+' '+y2+', L'+x4+' '+y2+'z" fill="'+mycocktaildetail[i].color+'" />';
             x1=x1+5/nb_boissons;
             x2=x2-5/nb_boissons;
             x3=x3-5/nb_boissons;
@@ -366,4 +299,33 @@ function new_boisson_cocktail(){
     }
 
     $('.couleur').html(boisson_svg);
+}
+function addIngredientToCocktail(ingredientName){
+    var flagingredient = false;
+    for(i=0; i < allDrinks.length; i++) {
+        if (ingredientName == allDrinks[i].name) {
+            var ingredientId = allDrinks[i].id;
+            ingredient.id = allDrinks[i].id;
+            ingredient.color = allDrinks[i].color;
+            flagingredient = true;
+        }
+    }
+
+    if(flagingredient == true){
+        console.log(ingredient);
+        mycocktail.push(ingredientId);
+        mycocktaildetail.push(ingredient);
+    }else{
+        console.log('pas d ingredient trouve');
+    }
+    console.log(mycocktaildetail);
+    var boisson_svg="";
+    //new_boisson_cocktail();
+
+
+
+    Ingredients._collection.insert({
+        name: ingredientName,
+        color: ingredient.color
+    });
 }
