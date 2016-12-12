@@ -67,17 +67,10 @@ $(document).ready(function(){
 */
 
 
-<<<<<<< HEAD
-
-
-
-// Calling API for all drinks
-=======
 /*-------------------------------------------------------------------*/
 // 1. Récupération de tous les ingrédients
 /*-------------------------------------------------------------------*/
 
->>>>>>> b9dcf5d11095558f8c1c59d68540384630a0f3ef
 
 var drinks = []; // tableau des brevages uniquement ['vodka', 'rhum']
 var allDrinks = []; // tableau des brevages entiers [{'id':'81', 'name':'vodka', 'color':'blue', 'type':'alcool'}, {}, {}, ... ]
@@ -129,15 +122,12 @@ $( function() { // input de recherche des tags
 } );
 
 
-<<<<<<< HEAD
-// Listing des ingrédients du cocktail
-=======
+
 /*-------------------------------------------------------------------*/
 // 2. Listing des ingrédients du cocktail
 /*-------------------------------------------------------------------*/
 
 
->>>>>>> b9dcf5d11095558f8c1c59d68540384630a0f3ef
 Ingredients = new Mongo.Collection('ingredients');
 
 Template.ingredients.helpers({
@@ -161,7 +151,6 @@ Template.addIngredients.events({
 
         var ingredientName = $('[name="ingredientName"]').val();
 
-<<<<<<< HEAD
 
         //get input
         $('[name="ingredientName"]').val('');
@@ -169,39 +158,11 @@ Template.addIngredients.events({
 
         addIngredientToCocktail(ingredientName);
 
-=======
-        $('[name="ingredientName"]').val('');
 
-
-        // A chaque submit on ajoute le nom de l'ingrédient dans un tableau
-        for(i=0; i < allDrinks.length; i++) {
-            if (ingredientName == allDrinks[i].name) {
-                var ingredientId = allDrinks[i].id;
-                var ingredientColor = allDrinks[i].color;
-                var flagingredient = true;
-                console.log(mycocktail+1);
-            }
-        }
-
-        if(flagingredient == true){
-            mycocktail.push(ingredientId);
-            console.log(mycocktail);
-            Ingredients._collection.insert({
-                name: ingredientName,
-                color: ingredientColor
-            });
-            new_boisson_cocktail();
-            myCocktailSuggestions(mycocktail);
-
-        }else{
-            console.log('pas d ingredient trouve');
-            MessageUser._collection.remove({});
-            MessageUser._collection.insert({ message: "Désolé, ça n'existe pas..." });
->>>>>>> b9dcf5d11095558f8c1c59d68540384630a0f3ef
 
         }
 
-    },
+
 });
 
 /*-------------------------------------------------------------------*/
@@ -259,8 +220,7 @@ Template.suggestions.helpers({
         return Suggestions.find();
     }});
 
-<<<<<<< HEAD
-=======
+
 
 /*------------------------------------------------------------*/
 // 5. Reinitialisation de tout
@@ -380,7 +340,6 @@ Template.cocktail.events({
 2) Récupérer les infos de "Mon cocktail"
 3) Récupérer toutes suggestions et les infos de chacune
 */
->>>>>>> b9dcf5d11095558f8c1c59d68540384630a0f3ef
 
 
 CocktailInfo = new Mongo.Collection('cocktailInfo');
@@ -542,7 +501,7 @@ function new_boisson_cocktail(){
 
     $('.couleur').html(boisson_svg);
 }
-<<<<<<< HEAD
+
 function addIngredientToCocktail(ingredientName){
     var flagingredient = false;
     for(i=0; i < allDrinks.length; i++) {
@@ -572,7 +531,6 @@ function addIngredientToCocktail(ingredientName){
         color: ingredient.color
     });
 }
-=======
 
 
 /*-------------------------------------------------------------------*/
@@ -586,4 +544,3 @@ Template.messageUser.helpers({
         return MessageUser.find();
     }});
     MessageUser._collection.insert({ message: "Bon, tu met quelque chose dans ton verre ?" });
->>>>>>> b9dcf5d11095558f8c1c59d68540384630a0f3ef
