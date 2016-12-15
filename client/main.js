@@ -6,11 +6,17 @@ import '/imports/library/jquery-ui.css';
 import '/imports/library/touch-punch';
 
 
+<<<<<<< 091599fcfc1701ad65ab4271ccd44f6d07e39352
 
  /*-------------------------------------------------------------------*/
 // CONTENU - TABLE DES MATIERES
 /*-------------------------------------------------------------------*/
+=======
+>>>>>>> fix
 
+ /*-------------------------------------------------------------------*/
+// CONTENU - TABLE DES MATIERES
+/*-------------------------------------------------------------------*/
 
 /*
 * 1. Récupération des ingrédients
@@ -24,6 +30,7 @@ import '/imports/library/touch-punch';
 * 9. Génération du visuel du cocktial
 * 10. Initialisation du message utilisateur
 *  */
+<<<<<<< 091599fcfc1701ad65ab4271ccd44f6d07e39352
 
 
 NProgress.start();
@@ -34,6 +41,17 @@ NProgress.done();
 // Touch handler
 /*-------------------------------------------------------------------*/
 
+=======
+
+
+NProgress.start();
+// Do something, like loading...
+NProgress.done();
+
+/*-------------------------------------------------------------------*/
+// Touch handler
+/*-------------------------------------------------------------------*/
+>>>>>>> fix
 
 
 $( function() {
@@ -50,7 +68,26 @@ $( function() {
 
 } );
 
+<<<<<<< 091599fcfc1701ad65ab4271ccd44f6d07e39352
 /*
+=======
+function touchHandler(event) {
+    var touch = event.changedTouches[0];
+
+    var simulatedEvent = document.createEvent("MouseEvent");
+    simulatedEvent.initMouseEvent({
+            touchstart: "mousedown",
+            touchmove: "mousemove",
+            touchend: "mouseup"
+        }[event.type], true, true, window, 1,
+        touch.screenX, touch.screenY,
+        touch.clientX, touch.clientY, false,
+        false, false, false, 0, null);
+
+    touch.target.dispatchEvent(simulatedEvent);
+    event.preventDefault();
+}
+>>>>>>> fix
 $(document).ready(function(){
     $(".img-responsive img").load(function() {
         width_socle_verre=$(this).height();
@@ -67,6 +104,11 @@ $(document).ready(function(){
 */
 
 
+<<<<<<< 091599fcfc1701ad65ab4271ccd44f6d07e39352
+=======
+
+
+>>>>>>> fix
 /*-------------------------------------------------------------------*/
 // 1. Récupération de tous les ingrédients
 /*-------------------------------------------------------------------*/
@@ -152,6 +194,7 @@ Template.addIngredients.events({
         var ingredientName = $('[name="ingredientName"]').val();
 
 
+<<<<<<< 091599fcfc1701ad65ab4271ccd44f6d07e39352
         //get input
         $('[name="ingredientName"]').val('');
 
@@ -163,6 +206,39 @@ Template.addIngredients.events({
         }
 
 
+=======
+        $('[name="ingredientName"]').val('');
+
+
+        // A chaque submit on ajoute le nom de l'ingrédient dans un tableau
+        for(i=0; i < allDrinks.length; i++) {
+            if (ingredientName == allDrinks[i].name) {
+                var ingredientId = allDrinks[i].id;
+                var ingredientColor = allDrinks[i].color;
+                var flagingredient = true;
+                console.log(mycocktail+1);
+            }
+        }
+
+        if(flagingredient == true){
+            mycocktail.push(ingredientId);
+            console.log(mycocktail);
+            Ingredients._collection.insert({
+                name: ingredientName,
+                color: ingredientColor
+            });
+            new_boisson_cocktail();
+            myCocktailSuggestions(mycocktail);
+
+        }else{
+            console.log('pas d ingredient trouve');
+            MessageUser._collection.remove({});
+            MessageUser._collection.insert({ message: "Désolé, ça n'existe pas..." });
+
+        }
+
+    },
+>>>>>>> fix
 });
 
 /*-------------------------------------------------------------------*/
@@ -342,6 +418,7 @@ Template.cocktail.events({
 */
 
 
+
 CocktailInfo = new Mongo.Collection('cocktailInfo');
 
 Template.cocktailInfo.helpers({
@@ -502,6 +579,7 @@ function new_boisson_cocktail(){
     $('.couleur').html(boisson_svg);
 }
 
+<<<<<<< 091599fcfc1701ad65ab4271ccd44f6d07e39352
 function addIngredientToCocktail(ingredientName){
     var flagingredient = false;
     for(i=0; i < allDrinks.length; i++) {
@@ -531,6 +609,8 @@ function addIngredientToCocktail(ingredientName){
         color: ingredient.color
     });
 }
+=======
+>>>>>>> fix
 
 
 /*-------------------------------------------------------------------*/
@@ -544,3 +624,7 @@ Template.messageUser.helpers({
         return MessageUser.find();
     }});
     MessageUser._collection.insert({ message: "Bon, tu met quelque chose dans ton verre ?" });
+<<<<<<< 091599fcfc1701ad65ab4271ccd44f6d07e39352
+=======
+
+>>>>>>> fix
