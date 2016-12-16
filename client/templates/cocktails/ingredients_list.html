@@ -19,10 +19,14 @@
 
 <template name="addIngredients">
     <form>
-        <!--<input type="text" placeholder="Type a task here..." name="todoName">-->
-        <div class="ui-widget">
+        <div class="ui-widget" id="ui-widget">
             <input autofocus id="ingredientName" type="text" name="ingredientName" placeholder="Remplis moi ce verre">
         </div>
+        <ul class="autocomplete-main">
+        {{#each autocomplete}}
+            <li class="autocomplete">{{name}}</li>
+        {{/each}}
+        </ul>
 
     </form>
 </template>

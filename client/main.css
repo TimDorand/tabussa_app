@@ -272,3 +272,18 @@ ul {
 }
 
 
+
+
+
+/*Autocomplete*/
+
+.autocomplete-main{
+    width: 93% !important;
+    margin: -20px 3% 0 3%;
+    position: absolute;
+}
+.autocomplete{
+    background:white;
+    padding: 2% 4% !important;
+    font-size: 2vh !important;
+}

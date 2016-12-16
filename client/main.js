@@ -53,7 +53,6 @@ NProgress.done();
 // Touch handler
 /*-------------------------------------------------------------------*/
 
-
 $( function() {
     // $( "#draggable3" ).draggable({ axis: "y" });
     $( "#draggable" ).draggable({ axis: "x" });
@@ -69,7 +68,7 @@ $( function() {
 } );
 
 $(document).ready(function(){
-    $(".img-responsive img").load(function() {
+    $(".img-responsive img").on('load', function() {
         width_socle_verre=$(this).height();
         new_width_socle=width_socle_verre-(width_socle_verre*52/100);
         $('.couleur').width(new_width_socle);
@@ -115,14 +114,76 @@ HTTP.call( 'POST', 'http://theo-hinfray.fr/IIM/tabussa/api/drinks', {
 
 
 
-//auto complete
-$( function() { // input de recherche des tags
+/*-------------------------------------------------------------------*/
+// Auto completion
+/*-------------------------------------------------------------------*/
 
-    $( "#ingredientName" ).autocomplete({
-        source: drinks
-    });
-} );
 
+// input de recherche des tags
+if(element = document.getElementById("ingredientName")){
+    element = document.getElementById("ingredientName");
+    console.log(element);
+    substring = document.getElementsByTagName("input").value;
+    console.log(substring);
+
+    for (i = 0; i < drinks.length; i++) {
+        console.log(drinks[i].indexOf(substring) !== -1);
+    }
+}
+
+
+Autocomplete = new Mongo.Collection('autocomplete');
+
+Template.addIngredients.helpers({
+    'autocomplete': function(){
+        return Autocomplete.find();
+    }});
+
+var autocompleteList = [];
+Template.addIngredients.events({
+    'keyup #ingredientName': function (event) {
+
+        Autocomplete._collection.remove({});
+
+        substring = event.currentTarget.value;
+        substring = substring.toLowerCase();
+        if(substring){
+        for (i = 0; i < drinks.length; i++) {
+            thedrink = drinks[i].toLowerCase();
+            if(thedrink.indexOf(substring) !== -1){
+                console.log(drinks[i]);
+                Autocomplete._collection.insert({ name: drinks[i] });
+            }
+        }
+        }else{
+            Autocomplete._collection.remove({});
+        }
+
+    }
+});
+
+Template.addIngredients.events({
+
+    'click .autocomplete': function(event) {
+        event.preventDefault();
+
+        //console.log(event.currentTarget.textContent);
+
+        var ingredientName = event.currentTarget.textContent;
+
+        addIngredientToCocktail(ingredientName);
+        Autocomplete._collection.remove({});
+        document.getElementById('ingredientName').value = '';
+
+
+
+    }
+});
+
+// Format jquery
+/* $( "#ingredientName" ).autocomplete({
+ source: drinks
+ });*/
 
 
 /*-------------------------------------------------------------------*/
