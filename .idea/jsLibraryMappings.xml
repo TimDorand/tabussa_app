@@ -4,6 +4,7 @@
     <file url="file://$PROJECT_DIR$" libraries="{tabussa_app/node_modules}" />
     <file url="file://$PROJECT_DIR$/.meteor/local/build/programs/server" libraries="{tabussa_app/.meteor/local/build/programs/server/node_modules}" />
     <file url="file://$PROJECT_DIR$/.meteor/local/build/programs/server/npm" libraries="{tabussa_app/.meteor/local/build/programs/server/npm/node_modules}" />
+    <file url="file://$PROJECT_DIR$/.meteor/local/cordova-build/platforms/android/cordova" libraries="{tabussa_app/.meteor/local/cordova-build/platforms/android/cordova/node_modules}" />
     <file url="file://$PROJECT_DIR$/.meteor/local/dev_bundle/lib" libraries="{tabussa_app/.meteor/local/dev_bundle/lib/node_modules}" />
     <file url="file://$PROJECT_DIR$/.meteor/local/dev_bundle/server-lib" libraries="{tabussa_app/.meteor/local/dev_bundle/server-lib/node_modules}" />
     <includedPredefinedLibrary name="ECMAScript 6" />
