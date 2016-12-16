@@ -5,7 +5,25 @@ import '/imports/library/jquery-ui.js';
 import '/imports/library/jquery-ui.css';
 import '/imports/library/touch-punch';
 
+/*  INIT VARIABLE  */
 
+// infos cocktail en cours
+var id_cocktail;
+var cocktailVisits;
+var cocktailBonus;
+var cocktailMalus;
+var totalBonusMalus;
+var ratioLikes;
+var ingredient={};
+
+// init de toutes les boissons de l'appli
+var drinks = []; // tableau des brevages uniquement ['vodka', 'rhum']
+var allDrinks = []; // tableau des brevages entiers [{'id':'81', 'name':'vodka', 'color':'blue', 'type':'alcool'}, {}, {}, ... ]
+
+
+//boissons du cocktail en cours
+var mycocktail = []; //id seulement pour suggestions
+var mycocktaildetail = []; //infos des boissons du cocktail
 
 
  /*-------------------------------------------------------------------*/
@@ -70,9 +88,7 @@ $(document).ready(function(){
 /*-------------------------------------------------------------------*/
 
 
-var drinks = []; // tableau des brevages uniquement ['vodka', 'rhum']
-var allDrinks = []; // tableau des brevages entiers [{'id':'81', 'name':'vodka', 'color':'blue', 'type':'alcool'}, {}, {}, ... ]
-var allCocktails = [];
+
 
 
 HTTP.call( 'POST', 'http://theo-hinfray.fr/IIM/tabussa/api/drinks', {
@@ -96,19 +112,7 @@ HTTP.call( 'POST', 'http://theo-hinfray.fr/IIM/tabussa/api/drinks', {
     }
 });
 
-HTTP.call( 'POST', 'http://theo-hinfray.fr/IIM/tabussa/api/cocktails', {
 
-}, function( error, response ) {
-    if ( error ) {
-        console.log( error );
-    } else {
-        var arrayCocktails = JSON.parse(response.content);
-        /*{"id":"2","visits":"12","created_at":"2016-11-15 17:43:55","id_drink1":"81","id_drink2":"82","id_drink3":"84","id_drink4":"85","id_drink5":"0","id_drink6":"0","id_drink7":"0","id_drink8":"0","id_drink9":"0","id_drink10":"0","bonus":"0","malus":"0"},*/
-        for(i=0; i < arrayCocktails.length; i++){
-            allCocktails.push(arrayCocktails[i]);
-        }
-    }
-});
 
 
 //auto complete
@@ -134,9 +138,7 @@ Template.ingredients.helpers({
     }});
 
 
-var mycocktail = [];
-var mycocktaildetail = [];
-var ingredient = {};
+
 
 /*-------------------------------------------------------------------*/
 // 3. Ajout d'un nouvel ingredient dans le cocktail
@@ -148,16 +150,9 @@ Template.addIngredients.events({
         event.preventDefault();
 
         var ingredientName = $('[name="ingredientName"]').val();
-
-
         //get input
         $('[name="ingredientName"]').val('');
-
-
         addIngredientToCocktail(ingredientName);
-
-
-
         }
 
 
@@ -227,6 +222,7 @@ Template.suggestions.helpers({
 Template.ingredients.events({
     'click #clearAll': function(event){
         event.preventDefault();
+        $('.couleur').html("");
 
         Ingredients._collection.remove({});
         Suggestions._collection.remove({});
@@ -235,70 +231,23 @@ Template.ingredients.events({
         MessageUser._collection.insert({ message: "Oouai ! Cul sec !" });
 
         mycocktail = [];
+        mycocktaildetail = [];
 
 
     }
 });
 
 /*------------------------------------------------------------*/
-// 6. Envoi d'un like
+// 6. Envoi d'un like et d'un dislike
 /*-------------------------------------------------------------------*/
 
-var id_cocktail;
+
 Template.cocktail.events({
     'click .like2': function(event){
         event.preventDefault();
-
-        /*URL : API/bonus
-         Utiliser la méthode POST en envoyant un tableau de type
-         $_POST["id"]="id_cocktail";
-
-         Il faut récupérer le tableau de tous les cocktails créé
-
-         Vous allez recevoir un tableau JSON avec les likes mis à jour*/
-
-
-
-        for(i=0; i < allCocktails.length; i++){
-            if(mycocktail[0] == allCocktails[i].id_drink1) {
-                // console.log('le premier ingrédient est bien ' + mycocktail[0]);
-                if (allCocktails[i].id_drink2 != 0) {
-                    // console.log(allCocktails[i].id + 'il y a un deuxième ingrédient');
-
-
-
-                    for(i=0; i < allCocktails.length; i++){
-                        if(mycocktail[1] == allCocktails[i].id_drink2) {
-                            // console.log('le 2ème ingrédient est bien ' + mycocktail[1]);
-                            if (allCocktails[i].id_drink3 != 0) {
-                                // console.log(allCocktails[i].id + 'il y a un 3ème ingrédient');
-
-
-
-
-
-                            }else{
-                                // console.log(allCocktails[i].id + 'il n\'y a pas de troisième ingrédient');
-                                id_cocktail = allCocktails[i].id;
-                            }
-                        }
-                    }
-
-                    } else {
-                    // console.log(allCocktails[i].id + 'il n\'y a pas de deuxième ingrédient');
-                    id_cocktail = allCocktails[i].id;
-                }
-            }
-
-        }
-
         console.log(id_cocktail);
 
-
-
-
-
-            HTTP.call( 'POST', 'http://theo-hinfray.fr/IIM/tabussa/api/bonus', {
+        HTTP.call( 'POST', 'http://theo-hinfray.fr/IIM/tabussa/api/bonus', {
             data: {
                 "id": id_cocktail
             }
@@ -307,26 +256,71 @@ Template.cocktail.events({
             if ( error ) {
                 console.log( error );
             } else {
-                console.log(response);
+                var get_obj=JSON.parse(response.content);
+                cocktailMalus=get_obj.malus;
+                cocktailBonus=get_obj.bonus;
                 MessageUser._collection.remove({});
                 MessageUser._collection.insert({ message: "C'est vrai que c'est bon... +1 !" });
+                //on refait le ratio like
+                totalBonusMalus = parseInt(cocktailBonus)+parseInt(cocktailMalus);
+                ratioLikes = 100*parseInt(cocktailBonus)/totalBonusMalus;
+                CocktailInfo._collection.remove({});
+                CocktailInfo._collection.insert({
+                    id:id_cocktail,
+                    visits: cocktailVisits,
+                    bonus: cocktailBonus,
+                    malus: cocktailMalus,
+                    ratioLikes: ratioLikes
+                });
+                moveProgressBar();
 
-                /*
-                arrayDrinks = JSON.parse(response.content);
-                for(i=0; i < arrayDrinks.length; i++){
-                    drinks.push(arrayDrinks[i].name);
-                    if(arrayDrinks[i].color){
-                        drinks.push(arrayDrinks[i].color);
-                    }
-
-                    allDrinks.push(arrayDrinks[i]);
-                }*/
-                // console.log(drinks);
-                // console.log(allDrinks);
 
             }
         });
     }
+
+
+});
+
+Template.cocktail.events({
+    'click .like1': function(event){
+        event.preventDefault();
+        console.log(id_cocktail);
+
+        HTTP.call( 'POST', 'http://theo-hinfray.fr/IIM/tabussa/api/malus', {
+            data: {
+                "id": id_cocktail
+            }
+
+        }, function( error, response ) {
+            if ( error ) {
+                console.log( error );
+            } else {
+
+                var get_obj=JSON.parse(response.content);
+                cocktailMalus=get_obj.malus;
+                cocktailBonus=get_obj.bonus;
+                console.log(response);
+                MessageUser._collection.remove({});
+                MessageUser._collection.insert({ message: "Beurk... -1 !" });
+
+                //on refait le ratio like
+                totalBonusMalus = parseInt(cocktailBonus)+parseInt(cocktailMalus);
+                ratioLikes = 100*parseInt(cocktailBonus)/totalBonusMalus;
+                CocktailInfo._collection.remove({});
+                CocktailInfo._collection.insert({
+                    id:id_cocktail,
+                    visits: cocktailVisits,
+                    bonus: cocktailBonus,
+                    malus: cocktailMalus,
+                    ratioLikes: ratioLikes
+                });
+                moveProgressBar();
+
+            }
+        });
+    }
+
 });
 
 /*-------------------------------------------------------------------*/
@@ -348,11 +342,6 @@ Template.cocktailInfo.helpers({
         return CocktailInfo.find();
     }});
 
-var cocktailVisits;
-var cocktailBonus;
-var cocktailMalus;
-var totalBonusMalus;
-var ratioLikes;
 
 
 function myCocktailSuggestions(mycocktail) {
@@ -387,12 +376,12 @@ function myCocktailSuggestions(mycocktail) {
 
 
             // Calcul du ratio positif
-
-            var cocktailVisits = arrayCocktails.visits;
-            var cocktailBonus = arrayCocktails.bonus;
-            var cocktailMalus = arrayCocktails.malus;
-            var totalBonusMalus = parseInt(cocktailBonus)+parseInt(cocktailMalus);
-            var ratioLikes = 100*parseInt(cocktailBonus)/totalBonusMalus;
+            id_cocktail = arrayCocktails.id;
+            cocktailVisits = arrayCocktails.visits;
+            cocktailBonus = arrayCocktails.bonus;
+            cocktailMalus = arrayCocktails.malus;
+            totalBonusMalus = parseInt(cocktailBonus)+parseInt(cocktailMalus);
+            ratioLikes = 100*parseInt(cocktailBonus)/totalBonusMalus;
 
             if(cocktailBonus = null){
                 ratioLikes = 100;
@@ -400,14 +389,20 @@ function myCocktailSuggestions(mycocktail) {
 
             CocktailInfo._collection.remove({});
             CocktailInfo._collection.insert({
+                id:id_cocktail,
                 visits: cocktailVisits,
                 bonus: cocktailBonus,
                 malus: cocktailMalus,
                 ratioLikes: ratioLikes
             });
 
-            console.log(ratioLikes);
 
+            // on page load...
+            moveProgressBar();
+            // on browser resize...
+            $(window).resize(function() {
+                moveProgressBar();
+            });
 
 
             // Message User
@@ -436,30 +431,6 @@ function myCocktailSuggestions(mycocktail) {
                 MessageUser._collection.remove({});
                 MessageUser._collection.insert({ message: "Bon, tu met quelque chose dans ton verre ?" });
             }
-
-
-            // on page load...
-            moveProgressBar();
-            // on browser resize...
-            $(window).resize(function() {
-                moveProgressBar();
-            });
-
-            // SIGNATURE PROGRESS
-            function moveProgressBar() {
-                var getPercent = ($('.progress-wrap').data('progress-percent') / 100);
-                var getProgressWrapWidth = $('.progress-wrap').width();
-                var progressTotal = getPercent * getProgressWrapWidth;
-                var animationLength = 2500;
-
-                // on page load, animate percentage bar to data percentage length
-                // .stop() used to prevent animation queueing
-                $('.progress-bar').stop().animate({
-                    left: progressTotal
-                }, animationLength);
-            }
-
-
             for (i = 0; i < arrayCocktails.length; i++) {
                 suggestions.push(arrayCocktails[i].name);
             }
@@ -486,9 +457,6 @@ function new_boisson_cocktail(){
         var y2=25;
         for(i=0; i < nb_boissons; i++) {
 
-
-
-            console.log(mycocktaildetail[i].taille);
             if(mycocktaildetail[i].taille==0) {
                 x1=x4;
                 x2=x3;
@@ -557,6 +525,27 @@ function addIngredientToCocktail(ingredientName){
 
 }
 
+
+
+
+/*-------------------------------------------------------------------*/
+// fonction du changement de la barre de ratio like / dislike
+/*-------------------------------------------------------------------*/
+
+// SIGNATURE PROGRESS
+function moveProgressBar() {
+    console.log(ratioLikes);
+    var getPercent = ($('.progress-wrap').data('progress-percent') / 100);
+    var getProgressWrapWidth = $('.progress-wrap').width();
+    var progressTotal = getPercent * getProgressWrapWidth;
+    var animationLength = 2500;
+
+    // on page load, animate percentage bar to data percentage length
+    // .stop() used to prevent animation queueing
+    $('.progress-bar').stop().animate({
+        left: progressTotal
+    }, animationLength);
+}
 
 /*-------------------------------------------------------------------*/
 // Nouveau message du petit bonhomme
