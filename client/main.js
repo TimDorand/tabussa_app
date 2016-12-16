@@ -172,31 +172,7 @@ Template.suggestions.events({
 
         var ingredientName = event.currentTarget.textContent;
 
-        // A chaque submit on ajoute le nom de l'ingrédient dans un tableau
-        for(i=0; i < allDrinks.length; i++) {
-            if (ingredientName == allDrinks[i].name) {
-
-                var ingredientId = allDrinks[i].id;
-                ingredient.id = allDrinks[i].id;
-                ingredient.color = allDrinks[i].color;
-                var flagingredient = true;
-            }
-        }
-        if(flagingredient == true){
-            mycocktail.push(ingredientId);
-            mycocktaildetail.push(ingredient);
-        }
-
-        Ingredients._collection.insert({
-            name: ingredientName,
-            color: ingredient.color
-        });
-
-        new_boisson_cocktail();
-
-        $('#cocktailInfoRating').html("");
-
-        myCocktailSuggestions(mycocktail);
+        addIngredientToCocktail(ingredientName);
 
     }
 });
@@ -434,7 +410,6 @@ function myCocktailSuggestions(mycocktail) {
             for (i = 0; i < arrayCocktails.length; i++) {
                 suggestions.push(arrayCocktails[i].name);
             }
-            new_boisson_cocktail();
         }
     });
 }
@@ -464,7 +439,7 @@ function new_boisson_cocktail(){
                 x4=x4-5/nb_boissons*0.6;
                 y1=y2;
                 y2=y2-25/nb_boissons*0.6;
-            }else if(mycocktaildetail[i-1] && mycocktaildetail[i].taille>0 ){
+            }else if(mycocktaildetail[i-1] && mycocktaildetail[i].taille!=0 ){
                 x1=x4;
                 x2=x3;
                 x3=x3+5/nb_boissons*1.4;
