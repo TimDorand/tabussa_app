@@ -62,7 +62,7 @@ $( function() {
     $( "#draggable4" ).draggable({ containment: "parent" });
 
     $('#draggable3').resizable({
-        maxHeight: 1200,
+        maxHeight: 800,
         minHeight: 70,
     });
 
@@ -332,17 +332,17 @@ function myCocktailSuggestions(mycocktail) {
         if (error) {
             //console.log(error);
         } else {
-            //console.log(response);
+            console.log(response);
             var arrayCocktails = JSON.parse(response.content);
             //console.log(arrayCocktails);
 
             var cocktailSuggestions = arrayCocktails.suggestions;
-
+            Suggestions._collection.remove({});
             // Si y'a des suggestions, on les push dans l'array suggestions et on les affiches
             if(cocktailSuggestions){
 
 
-                Suggestions._collection.remove({});
+
                 $.each(cocktailSuggestions, function(index, value) {
                     Suggestions._collection.insert({ name: value.name });
 
