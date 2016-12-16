@@ -477,51 +477,81 @@ function new_boisson_cocktail(){
     var boisson_svg="";
     nb_boissons=mycocktaildetail.length;
     if(nb_boissons>0){
-        var x1=0;
-        var x2=20;
-        var x3=20-5/nb_boissons;
-        var x4=5/nb_boissons;
-        var y1=0;
-        var y2=25/nb_boissons;
 
+        var x1;
+        var x2;
+        var x3=15;
+        var x4=5;
+        var y1;
+        var y2=25;
         for(i=0; i < nb_boissons; i++) {
-            var back = ["#ff0000","blue","red", "white", "green", "black", "yellow"];
-            var rand = back[Math.floor(Math.random() * back.length)];
 
+
+
+            console.log(mycocktaildetail[i].taille);
+            if(mycocktaildetail[i].taille==0) {
+                x1=x4;
+                x2=x3;
+                x3=x3+5/nb_boissons*0.6;
+                x4=x4-5/nb_boissons*0.6;
+                y1=y2;
+                y2=y2-25/nb_boissons*0.6;
+            }else if(mycocktaildetail[i-1] && mycocktaildetail[i].taille>0 ){
+                x1=x4;
+                x2=x3;
+                x3=x3+5/nb_boissons*1.4;
+                x4=x4-5/nb_boissons*1.4;
+                y1=y2;
+                y2=y2-25/nb_boissons*1.4;
+            }else{
+                x1=x4;
+                x2=x3;
+                x3=x3+5/nb_boissons;
+                x4=x4-5/nb_boissons;
+                y1=y2;
+                y2=y2-25/nb_boissons;
+            }
             boisson_svg=boisson_svg+'<path d="M'+x1+' '+y1+', L'+x2+' '+y1+', L'+x3+' '+y2+', L'+x4+' '+y2+'z" fill="'+mycocktaildetail[i].color+'" />';
-            x1=x1+5/nb_boissons;
-            x2=x2-5/nb_boissons;
-            x3=x3-5/nb_boissons;
-            x4=x4+5/nb_boissons;
-            y1=y1+25/nb_boissons;
-            y2=y1+25/nb_boissons;
+
         }
     }
 
     $('.couleur').html(boisson_svg);
 }
 
+
+/*-------------------------------------------------------------------*/
+// 10. ajout ingrédient dans le tableau
+/*-------------------------------------------------------------------*/
+
 function addIngredientToCocktail(ingredientName){
     var flagingredient = false;
     for(i=0; i < allDrinks.length; i++) {
         if (ingredientName == allDrinks[i].name) {
             var ingredientId = allDrinks[i].id;
+            var ingredient = {};
             ingredient.id = allDrinks[i].id;
             ingredient.color = allDrinks[i].color;
+            ingredient.type = allDrinks[i].type;
+            ingredient.taille = allDrinks[i].taille;
             flagingredient = true;
         }
     }
 
     if(flagingredient == true){
-        console.log(ingredient);
+
         mycocktail.push(ingredientId);
         mycocktaildetail.push(ingredient);
     }else{
         console.log('pas d ingredient trouve');
     }
-    console.log(mycocktaildetail);
-    var boisson_svg="";
+    Ingredients._collection.insert({
+        name: ingredientName,
+        color: ingredient.color
+    });
     new_boisson_cocktail();
+
+    myCocktailSuggestions(mycocktail);
 
 
 
