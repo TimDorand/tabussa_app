@@ -253,6 +253,7 @@ Template.cocktail.events({
 
             }
         });
+        $('.like').hide(200);
     }
 
 
@@ -468,6 +469,7 @@ function new_boisson_cocktail(){
 /*-------------------------------------------------------------------*/
 
 function addIngredientToCocktail(ingredientName){
+    $('.like').show(200);
     var flagingredient = false;
     for(i=0; i < allDrinks.length; i++) {
         if (ingredientName == allDrinks[i].name) {
