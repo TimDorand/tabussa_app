@@ -88,9 +88,7 @@ $(document).ready(function(){
 
 
 
-
-
-HTTP.call( 'POST', 'http://theo-hinfray.fr/IIM/tabussa/api/drinks', {
+HTTP.call( 'POST', 'http://timothee-dorand.fr/tabussa/API/drinks', {
 
 }, function( error, response ) {
     if ( error ) {
@@ -107,6 +105,9 @@ HTTP.call( 'POST', 'http://theo-hinfray.fr/IIM/tabussa/api/drinks', {
             }
 
             allDrinks.push(arrayDrinks[i]);
+            Ingredients._collection.insert({
+                name: arrayDrinks[i].name
+            });
         }
     }
 });
